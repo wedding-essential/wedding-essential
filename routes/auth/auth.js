@@ -92,4 +92,33 @@ router.post("/signup/guest", async (req, res) => {
   }
 });
 
+router.post("/login", (req, res) => {
+  passport.authenticate("local", (err, user) => {
+    console.log(user);
+    if (err) {
+      return res.status(500).json({ message: "Error while authenticating" });
+    }
+    if (!user) {
+      return res.status(400).json({ message: "Wrong credentials" });
+    }
+    req.login(user, (err) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ message: "Error while attempting to login" });
+      }
+      return res.json(user);
+    });
+  })(req, res);
+});
+
+router.delete("/logout", (req, res) => {
+  req.logout();
+  res.json({ message: "Successful logout" });
+});
+
+// router.get('/loggedin', (req, res) => {
+//   res.json(req.user);
+// })
+
 module.exports = router;
