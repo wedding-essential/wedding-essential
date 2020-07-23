@@ -24,18 +24,6 @@ const userSchema = new Schema({
       ref: "PlusOne",
     },
   ],
-  gift: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Gift",
-    },
-  ],
-  post: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Post",
-    },
-  ],
   wedding: {
     type: Schema.Types.ObjectId,
     ref: "Wedding",
