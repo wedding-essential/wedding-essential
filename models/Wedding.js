@@ -15,7 +15,7 @@ const weddingSchema = new Schema({
   bannerImgPublicId: String,
   date: String,
   story: String,
-  event: [
+  events: [
     {
       name: String,
       location: String,
@@ -52,13 +52,13 @@ const weddingSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  gift: [
+  gifts: [
     {
       type: Schema.Types.ObjectId,
       ref: "Gift",
     },
   ],
-  post: [
+  posts: [
     {
       type: Schema.Types.ObjectId,
       ref: "Post",

@@ -10,6 +10,7 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
+
 mongoose
   .connect('mongodb://localhost/wedding-essential', {useNewUrlParser: true})
   .then(x => {
@@ -23,6 +24,23 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+const session = require('express-session');
+const passport = require('passport');
+require('./configs/passport');
+
+const MongoStore = require('connect-mongo')(session);
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -50,13 +68,11 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-app.use('/api/auth', './routes/auth/auth.js')
+app.use('/api/auth', require('./routes/auth/auth.js'))
 
-app.use('/api/wedding', './routes/wedding/gift.js')
-app.use('/api/wedding', './routes/wedding/post.js')
-app.use('/api/wedding', './routes/wedding/user.js')
-app.use('/api/wedding', './routes/wedding/wedding.js')
-
-
+// app.use('/api/wedding', './routes/wedding/gift.js')
+// app.use('/api/wedding', './routes/wedding/post.js')
+// app.use('/api/wedding', require('./routes/wedding/user.js'))
+// app.use('/api/wedding', './routes/wedding/wedding.js')
 
 module.exports = app;

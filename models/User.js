@@ -18,7 +18,7 @@ const userSchema = new Schema({
     enum: ["omnivore", "vegeterian", "vegan"],
     default: "omnivore",
   },
-  plusOne: [
+  plusOnes: [
     {
       type: Schema.Types.ObjectId,
       ref: "PlusOne",
