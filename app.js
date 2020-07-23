@@ -70,9 +70,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 app.use('/api/auth', require('./routes/auth/auth.js'))
 
-// app.use('/api/wedding', './routes/wedding/gift.js')
-// app.use('/api/wedding', './routes/wedding/post.js')
-// app.use('/api/wedding', require('./routes/wedding/user.js'))
-// app.use('/api/wedding', './routes/wedding/wedding.js')
+// app.use('/api/wedding', require('./routes/wedding/gift.js'))
+// app.use('/api/wedding', require('./routes/wedding/post.js'))
+app.use('/api/wedding', require('./routes/wedding/user.js'))
+app.use('/api/wedding', require('./routes/wedding/wedding.js'))
 
 module.exports = app;
