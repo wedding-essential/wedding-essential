@@ -50,9 +50,13 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
+app.use('/api/auth', './routes/auth/auth.js')
 
-const index = require('./routes/index');
-app.use('/', index);
+app.use('/api/wedding', './routes/wedding/gift.js')
+app.use('/api/wedding', './routes/wedding/post.js')
+app.use('/api/wedding', './routes/wedding/user.js')
+app.use('/api/wedding', './routes/wedding/wedding.js')
+
 
 
 module.exports = app;
