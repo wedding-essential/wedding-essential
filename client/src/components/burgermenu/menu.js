@@ -23,7 +23,7 @@ export default class menu extends Component {
           <p>******</p>
         </div>
         <div><Link to='/guests'>Guest list</Link></div>
-        <div><Link to='/settings'>Settings</Link></div>
+        <div><Link to='/profile'>Settings</Link></div>
         <div><Link to='/' onClick={() => this.handleLogout(this.props)}>Logout</Link></div>
       </div>
     )

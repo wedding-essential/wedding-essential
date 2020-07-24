@@ -1,4 +1,4 @@
-[
+{ "giftlist":[
   {
     "name": "espresso maker",
     "description": "I am a coffee addict",
@@ -24,3 +24,4 @@
     }
   }
   ]
+}
