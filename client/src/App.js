@@ -9,6 +9,8 @@ import Login from './components/auth/Login'
 import Gallery from './components/gallery/Gallery'
 import Navbar from './components/navbar/Navbar'
 import Menu from './components/burgermenu/menu'
+import Guests from './components/guests/Guests'
+import Gifts from './components/gifts/Gifts'
 
 
 function App() {
@@ -49,6 +51,18 @@ function App() {
       path='/menu'
       component={Menu}
     />
+
+    <Route
+      exact
+      path='/guests'
+      component={Guests}
+    />
+
+    <Route
+      exact
+      path='/gifts'
+      component={Gifts}
+    />   
 
     <Navbar/>
     </>

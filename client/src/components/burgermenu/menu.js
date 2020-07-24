@@ -14,7 +14,7 @@ export default class menu extends Component {
           <h1>Your wedding passcode</h1>
           <p>******</p>
         </div>
-        <div><Link to='/guest'>Guest list</Link></div>
+        <div><Link to='/guests'>Guest list</Link></div>
         <div><Link to='/settings'>Settings</Link></div>
         <div><Link to='/logout'>Logout</Link></div>
       </div>
