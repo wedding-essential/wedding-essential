@@ -1,0 +1,49 @@
+
+{
+  "_id": "1427585207489754589",
+  "passcode": "123456",
+  "gallery": [
+    {
+      "url": "https://images.app.goo.gl/UaGNycNDQpmVyAS36"
+    },
+    {
+      "url": "https://images.app.goo.gl/N7R1PicP5Ldoza1j8"
+    }
+  ],
+  "bannerImgName": "Happy wedding",
+  "bannerImgPath": "https://images.app.goo.gl/ufZeSwUtGWnQZ8v38",
+  "bannerImgPublicId": "1234566",
+  "date": "12.08.2020",
+  "story": "Is this really the best decision I made ?",
+  "event": [
+    {
+      "name": "ceremony",
+      "location": "Notre Dame de Paris",
+      "time": "11h",
+      "description": "Follow the smoke"
+    },
+    {
+      "name": "Party",
+      "location": "Versaille",
+      "time": "23h",
+      "description": "Follow the light"
+    }
+  ],
+  "dresscode": {
+    "description": "Come as you are",
+    "category": "blacktie"
+  },
+  "owner": "12345678",
+  "guests": [
+    {
+      "_id": "87654321"
+    },
+    {
+      "_id": "09876543"
+    }
+  ],
+  "contact": {
+    "_id": "87654321"
+  }
+}
+
