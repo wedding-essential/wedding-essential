@@ -29,9 +29,8 @@ export default class SignupCouple extends Component {
           message: data.message,
         })
       } else {
-        this.setState({
-          user: data
-        })
+        this.props.setUser(data);
+        this.props.history.push('/home');
       }
     })
   }
@@ -49,6 +48,9 @@ export default class SignupCouple extends Component {
           <input type="text" name="email" onChange={this.handleChange} value={this.state.email} required></input>
           <label>Password</label>
           <input type="password" name="password" onChange={this.handleChange} value={this.state.password} required></input>
+          {this.state.message && (
+            <p>{this.state.message}</p>
+          )}
           <button type="submit" value="submit">Next</button>
         </form>
         <h2>

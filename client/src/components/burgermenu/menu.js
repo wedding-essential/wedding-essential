@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import {logout} from "../../services/auth";
 
 export default class menu extends Component {
+
+  handleLogout = () => {
+    logout().then(() => {
+      this.props.setUser(null);
+    });
+  }
+
   render() {
     return (
       <div>
@@ -16,7 +24,7 @@ export default class menu extends Component {
         </div>
         <div><Link to='/guests'>Guest list</Link></div>
         <div><Link to='/settings'>Settings</Link></div>
-        <div><Link to='/logout'>Logout</Link></div>
+        <div><Link to='/' onClick={() => this.handleLogout(this.props)}>Logout</Link></div>
       </div>
     )
   }
