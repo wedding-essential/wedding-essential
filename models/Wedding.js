@@ -17,6 +17,7 @@ const weddingSchema = new Schema({
   story: String,
   events: [
     {
+      id: String,
       name: String,
       location: String,
       time: String,
@@ -52,18 +53,6 @@ const weddingSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  gifts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Gift",
-    },
-  ],
-  posts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Post",
-    },
-  ],
 });
 
 const Wedding = mongoose.model("Wedding", weddingSchema);
