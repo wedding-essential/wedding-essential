@@ -1,15 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Fragment } from 'react';
+
 
 export default function GuestList(props) {
-  console.log(props.guests);
-  return (
-    <div>
-      <img />
-      <h4>Martina Jansen</h4>
-      <img />
-      <button>Edit</button>
-      <button>Delete</button>
-    </div>
-  )}
+  return <div>{props.guests.map(elem=>{
+    return <div key={elem._id}>
+               <div>
+               <img />
+                </div>
+            <div>
+               <h2>{elem.name}</h2>
+              <p>{elem.description}</p>
+            </div>
+            <div>
+              <a>Buy it here</a>
+             <button>Give this Gift</button>
+            </div>
+         </div>
+  })}</div>
+     }

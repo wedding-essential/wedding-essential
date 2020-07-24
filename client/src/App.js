@@ -12,6 +12,7 @@ import Menu from './components/burgermenu/menu'
 import Guests from './components/guests/Guests'
 import Gifts from './components/gifts/Gifts'
 import Profile from './components/profile/Profile'
+import Posts from './components/posts/Posts'
 
 
 function App() {
@@ -69,6 +70,15 @@ function App() {
       path='/profile'
       component={Profile}
     />    
+
+
+
+    <Route
+      exact
+      path='/posts'
+      component={Posts}
+    />
+
 
     <Navbar/>
     </>

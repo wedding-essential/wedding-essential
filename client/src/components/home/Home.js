@@ -21,6 +21,11 @@ export default class Home extends Component {
             <p>Notre Dame de Paris</p>
             <p>Follow the smoke</p>
           </div>
+          <div id='dresscode'>
+            <h2>Dresscode</h2>
+            <p>Fireman</p>
+          </div>
+          <div>Contact</div>
         </div>
       </div>
     )

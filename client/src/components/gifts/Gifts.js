@@ -1,38 +1,39 @@
 import React, { Component } from 'react'
 import GiftList from './GiftList.js';
 import axios from 'axios';
+import DummyGifts from '../../DummyGifts.json'
 
 export default class Gifts extends Component {
-  state = {
-    gifts: []
-  };
+  // state = {
+  //   gifts: []
+  // };
 
-  componentDidMount = () => {
-    this.getData();
-  };
+  // componentDidMount = () => {
+  //   this.getData();
+  // };
 
-  getData = () => {
-    axios
-      .get('/api/wedding/${id}guests')
-      .then(response => {
-        this.setState({
-          guests: response.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  // getData = () => {
+  //   axios
+  //     .get('/api/wedding/${id}guests')
+  //     .then(response => {
+  //       this.setState({
+  //         guests: response.data
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
 
   render() {
-    console.log(this.state.gifts);
+
     return (
       <>
       <div>
         <h2>Gifts</h2>
       </div>
       <div className='gifts-container'>
-        <GiftList gifts={this.state.gifts} />
+        <GiftList gifts={DummyGifts.giftlist} />
       </div>
       </>
     );
