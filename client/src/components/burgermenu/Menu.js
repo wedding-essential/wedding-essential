@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {logout} from "../../services/auth";
 
-export default class menu extends Component {
+export default class Menu extends Component {
 
   handleLogout = () => {
     logout().then(() => {

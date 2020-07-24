@@ -8,7 +8,7 @@ import Home from './components/home/Home'
 import Login from './components/auth/Login'
 import Gallery from './components/gallery/Gallery'
 import Navbar from './components/navbar/Navbar'
-import Menu from './components/burgermenu/menu'
+import Menu from './components/burgermenu/Menu'
 import Guests from './components/guests/Guests'
 import Gifts from './components/gifts/Gifts'
 import Profile from './components/profile/Profile'
@@ -53,7 +53,7 @@ export default class App extends Component {
       <Route
         exact
         path='/home'
-        component={Home}
+        render={props => <Home user={this.state.user} />}
       />
       <Route
         exact
