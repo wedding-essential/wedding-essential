@@ -9,6 +9,7 @@ import Login from './components/auth/Login'
 import Gallery from './components/gallery/Gallery'
 import Navbar from './components/navbar/Navbar'
 import Menu from './components/burgermenu/menu'
+import Posts from './components/posts/Posts'
 
 
 function App() {
@@ -49,6 +50,16 @@ function App() {
       path='/menu'
       component={Menu}
     />
+
+
+
+
+    <Route
+      exact
+      path='/posts'
+      component={Posts}
+    />
+
 
     <Navbar/>
     </>
