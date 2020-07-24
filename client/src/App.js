@@ -11,6 +11,7 @@ import Navbar from './components/navbar/Navbar'
 import Menu from './components/burgermenu/menu'
 import Guests from './components/guests/Guests'
 import Gifts from './components/gifts/Gifts'
+import Profile from './components/profile/Profile'
 
 
 function App() {
@@ -62,7 +63,12 @@ function App() {
       exact
       path='/gifts'
       component={Gifts}
-    />   
+    /> 
+    <Route
+      exact
+      path='/profile'
+      component={Profile}
+    />    
 
     <Navbar/>
     </>
