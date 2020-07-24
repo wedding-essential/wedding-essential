@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class PostList extends Component {
   render() {
+    console.log(this.props.posts)
     return (
       <div>
         <div>
