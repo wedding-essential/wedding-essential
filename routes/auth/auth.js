@@ -42,6 +42,7 @@ router.post("/signup/couple", async (req, res) => {
         res.status(500).json({ message: "Error while attempting to login" });
       res.status(200).json(user);
     });
+    res.status(200).json(user);
   } catch (err) {
     res.json(err);
   }
@@ -86,6 +87,7 @@ router.post("/signup/guest", async (req, res) => {
           res.status(500).json({ message: "Error while attempting to login" });
         res.json(guest);
       });
+      res.status(200).json(user);
     }
   } catch (err) {
     res.json(err);
@@ -94,7 +96,6 @@ router.post("/signup/guest", async (req, res) => {
 
 router.post("/login", (req, res) => {
   passport.authenticate("local", (err, user) => {
-    console.log(user);
     if (err) {
       return res.status(500).json({ message: "Error while authenticating" });
     }
@@ -117,8 +118,8 @@ router.delete("/logout", (req, res) => {
   res.json({ message: "Successful logout" });
 });
 
-// router.get('/loggedin', (req, res) => {
-//   res.json(req.user);
-// })
+router.get("/loggedin", (req, res) => {
+  res.json(req.user);
+});
 
 module.exports = router;
