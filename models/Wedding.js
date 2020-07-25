@@ -10,22 +10,40 @@ const weddingSchema = new Schema({
       imgPublicId: String,
     },
   ],
-  bannerImgName: String,
-  bannerImgPath: String,
+  bannerImgName: {
+    type: String,
+    default: "My wedding essential",
+  },
+  bannerImgPath: {
+    type: String,
+    default: "https://unsplash.com/photos/M2T1j-6Fn8w",
+  },
   bannerImgPublicId: String,
   date: String,
-  story: String,
+  story: {
+    type: String,
+    default:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra nibh cras pulvinar mattis nunc sed. Porta lorem mollis aliquam ut. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Nunc aliquet bibendum enim facilisis.",
+  },
   events: [
     {
       id: String,
-      name: String,
-      location: String,
-      time: String,
-      description: String,
+      name: { type: String, default: "Ceremony" },
+      location: { type: String, default: "Church of Love" },
+      time: { type: String, default: "8am" },
+      description: {
+        type: String,
+        default:
+          "Lorem ipsum dolor sit amet. Cras pulvinar mattis nunc sed. Justo laoreet sit amet cursus sit amet.",
+      },
     },
   ],
   dresscode: {
-    description: String,
+    description: {
+      type: String,
+      default:
+        "Lorem ipsum dolor sit amet. Cras pulvinar mattis nunc sed. Justo laoreet sit amet cursus sit amet.",
+    },
     category: {
       type: String,
       enum: [
@@ -37,6 +55,7 @@ const weddingSchema = new Schema({
         "casual",
         "tropical",
       ],
+      default: "formal"
     },
   },
   owner: {
