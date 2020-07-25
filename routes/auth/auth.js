@@ -25,17 +25,19 @@ router.post("/signup/couple", async (req, res) => {
     const salt = bcrypt.genSaltSync();
     const hash = bcrypt.hashSync(password, salt);
 
-    const user = await User.create({ email, password: hash, role: "couple" });
+    let user = await User.create({ email, password: hash, role: "couple" });
 
     const wedding = await Wedding.create({
       passcode,
       owner: user._id,
     });
 
-    const weddingInCouple = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { email },
       { wedding: wedding._id }
     );
+
+    user = await User.findById(user._id)
 
     req.login(user, (err) => {
       if (err)
@@ -115,7 +117,9 @@ router.post("/login", (req, res) => {
 
 router.delete("/logout", (req, res) => {
   req.logout();
-  res.json({ message: "Successful logout" });
+  req.session.destroy(function (err) {
+    res.json({ message: "Successful logout"});
+  })
 });
 
 router.get("/loggedin", (req, res) => {
