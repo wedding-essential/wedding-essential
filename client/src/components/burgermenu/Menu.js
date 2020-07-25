@@ -15,7 +15,7 @@ export default class Menu extends Component {
       <div>
         <h1>Menu</h1>
         <div>
-          <img src='/images/we-circle-01 1.svg' alt='couple profile picture'/>
+          {/* <img src={logo} alt='couple profile picture'/> */}
           <p>Caroline & Alberto</p>
         </div>
         <div>

@@ -1,10 +1,11 @@
 const express = require("express");
 const Wedding = require("../../models/Wedding");
-const { restart } = require("nodemon");
 const User = require("../../models/User");
+const {loginCheck} = require('../auth/middlewares');
 const router = express.Router();
 
-router.get("/:id", (req, res) => {
+
+router.get("/:id", loginCheck(), (req, res) => {
   Wedding.findById(req.params.id)
     .populate("owner")
     .populate("guests")
@@ -21,7 +22,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", loginCheck(), async (req, res) => {
   try {
     const {date, story} = req.body;
     const wedding = await Wedding.findByIdAndUpdate("5f19b89b1aa0c8b111889f8b", {date, story});
@@ -31,7 +32,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", loginCheck(), async (req, res) => {
   try {
     const users = await User.deleteMany({wedding: req.params.id});
     const wedding = await Wedding.findByIdAndDelete(req.params.id);

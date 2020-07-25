@@ -11,7 +11,7 @@ axios.get("/api/auth/loggedin").then((response) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <App user={user}/>
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")

@@ -19,20 +19,22 @@ export default class SignupCouple extends Component {
     })
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { email, password } = this.state;
+  handleSubmit = async event => {
+    try {
+      event.preventDefault();
+      const { email, password } = this.state;
 
-    signupCouple(email, password).then(data => {
-      if (data.message) {
-        this.setState({
-          message: data.message,
-        })
-      } else {
-        this.props.setUser(data);
-        this.props.history.push('/home');
-      }
-    })
+      const signup = await signupCouple(email, password)
+        if (signup.message) {
+          this.setState({
+            message: signup.message,
+          })
+        } else {
+          this.props.setUser(signup);
+        }
+      const redirect = await function() {return this.props.history.push('/home')};
+    }
+    catch(err) {console.log(err)}
   }
 
   render() {

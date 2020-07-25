@@ -19,7 +19,7 @@ export default class Home extends Component {
   }
 
   getData = () => {
-    const weddingId = this.props.user ? this.props.user.wedding : 0
+    const weddingId = this.props.user.wedding;
     axios
       .get(`/api/wedding/${weddingId}`)
       .then(response => {
@@ -31,16 +31,19 @@ export default class Home extends Component {
   }
 
   render() {
-    
-    return (
-      <div>
-        {/* Banner also need profile picture from owner */}
-        {this.state.wedding && (<> <Banner imgName={this.state.wedding.bannerImgName} imgPath={this.state.wedding.bannerImgPath} imgId={this.state.wedding.bannerImgPublicId}/>
-        <Story story={this.state.wedding.story}/>
-        <Timeline date={this.state.wedding.date} events={this.state.wedding.events}/>
-        <Dresscode dresscode={this.state.wedding.dresscode}/>  
-        <Contact contact={this.state.wedding.contact}/> </>)}
-      </div>
-    )
+    if(!this.state.wedding){return <> </>}
+    else {
+      return (
+        <div>
+          <h1>Hello world</h1>
+          {/* Banner also need profile picture from owner */}
+          {/* <Banner imgName={this.state.wedding.bannerImgName} imgPath={this.state.wedding.bannerImgPath} imgId={this.state.wedding.bannerImgPublicId}/> */}
+          {/* <Story story={this.state.wedding.story}/> */}
+          {/* <Timeline date={this.state.wedding.date} events={this.state.wedding.events}/> */}
+          {/* <Dresscode dresscode={this.state.wedding.dresscode}/> */}
+          {/* <Contact contact={this.state.wedding.contact}/> */}
+        </div>
+      )
+    }
   }
 }
