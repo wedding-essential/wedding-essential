@@ -74,22 +74,25 @@ router.post("/signup/guest", async (req, res) => {
     } else {
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(password, salt);
-      const guest = await User.create({ email, password: hash, role: "guest" });
-      const addGuest = await Wedding.findByIdAndUpdate(wedding._id, {
+      let guest = await User.create({ email, password: hash, role: "guest" });
+      
+      await Wedding.findByIdAndUpdate(wedding._id, {
         $push: { guests: guest._id },
       });
 
-      const weddingInGuest = await User.findOneAndUpdate(
+      await User.findOneAndUpdate(
         { email },
         { wedding: wedding._id }
       );
+
+      guest = await User.findById(guest._id);
 
       req.login(guest, (err) => {
         if (err)
           res.status(500).json({ message: "Error while attempting to login" });
         res.json(guest);
       });
-      res.status(200).json(user);
+      res.status(200).json(guest);
     }
   } catch (err) {
     res.json(err);
@@ -102,7 +105,7 @@ router.post("/login", (req, res) => {
       return res.status(500).json({ message: "Error while authenticating" });
     }
     if (!user) {
-      return res.status(400).json({ message: "Wrong credentials" });
+      return res.status(400).json({ message: "Invalid credentials" });
     }
     req.login(user, (err) => {
       if (err) {
