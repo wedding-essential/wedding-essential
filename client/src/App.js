@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import './App.css';
 import Landing from './components/landing/Landing';
 import SignupCouple from './components/auth/SignupCouple'
@@ -53,42 +53,49 @@ export default class App extends Component {
       <Route
         exact
         path='/home'
-        render={props => <Home user={this.state.user} />}
+        render={props => {if (this.state.user) return <Home user={this.state.user} />
+        else return <Redirect to='/'/>}}
       />
       <Route
         exact
         path='/gallery'
-        component={Gallery}
+        render={props => {if (this.state.user) return <Gallery />
+        else return <Redirect to='/'/>}}
       />
       <Route
         exact
         path='/menu'
-        render={props => <Menu setUser={this.setUser} {...props} />}
+        render={props => {if (this.state.user) return <Menu setUser={this.setUser} {...props}/>
+        else return <Redirect to='/'/>} }
       />
       <Route
         exact
         path='/posts'
-        component={Posts}
+        render={props => {if (this.state.user) return <Posts />
+        else return <Redirect to='/'/>}}
       />
       
       <Route
       exact
       path='/guests'
-      component={Guests}
+      render={props => {if (this.state.user) return <Guests />
+        else return <Redirect to='/'/>}}
     />
 
     <Route
       exact
       path='/gifts'
-      component={Gifts}
+      render={props => {if (this.state.user) return <Gifts />
+        else return <Redirect to='/'/>}}
     /> 
     <Route
       exact
       path='/profile'
-      component={Profile}
+      render={props => {if (this.state.user) return <Profile />
+        else return <Redirect to='/'/>}}
     />    
 
-      <Navbar/>
+     {this.state.user && <Navbar/>}
     </>
     )
   }
