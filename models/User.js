@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   email: String,
   password: String,
-  firstName: String,
-  lastName: String,
-  imgName: String,
-  imgPath: String,
+  firstName: {type: String, default: "Hans"},
+  lastName: {type: String, default: "Hansen"},
+  partnerFirstName: {type: String, default: "Gretel"},
+  partnerLastName: {type: String, default: "Gretelsen"},
+  imgName: { type: String, default: "Happy Couple" },
+  imgPath: { type: String, default: "https://unsplash.com/photos/ZsPlbTxFosA" },
   imgPublicId: String,
   role: {
     type: String,

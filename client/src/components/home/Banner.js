@@ -6,8 +6,8 @@ export default class Banner extends Component {
     return (
       <div >
           {/* Background image as banner image */}
-          <div><img alt='couple profile picture'/></div>
-          <div>36 Days 18 Hours 15 Mins</div>
+          <div><img src={this.props.wedding.owner}alt='couple profile picture'/></div>
+          <div>{this.props.wedding.date}</div>
       </div>
     )
   }

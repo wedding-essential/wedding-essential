@@ -38,7 +38,7 @@ export default class Home extends Component {
         <div>
           <h1>Hello world</h1>
           {/* Banner also need profile picture from owner */}
-          {/* <Banner imgName={this.state.wedding.bannerImgName} imgPath={this.state.wedding.bannerImgPath} imgId={this.state.wedding.bannerImgPublicId}/> */}
+          <Banner wedding={this.state.wedding}/>
           {/* <Story story={this.state.wedding.story}/> */}
           {/* <Timeline date={this.state.wedding.date} events={this.state.wedding.events}/> */}
           {/* <Dresscode dresscode={this.state.wedding.dresscode}/> */}
