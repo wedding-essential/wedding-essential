@@ -19,7 +19,10 @@ const weddingSchema = new Schema({
     default: "https://unsplash.com/photos/M2T1j-6Fn8w",
   },
   bannerImgPublicId: String,
-  date: String,
+  date: {
+    type: Date,
+    default: Date.now() + 365*24*60*60*1000,
+  },
   story: {
     type: String,
     default:
@@ -28,14 +31,10 @@ const weddingSchema = new Schema({
   events: [
     {
       id: String,
-      name: { type: String, default: "Ceremony" },
-      location: { type: String, default: "Church of Love" },
-      time: { type: String, default: "8am" },
-      description: {
-        type: String,
-        default:
-          "Lorem ipsum dolor sit amet. Cras pulvinar mattis nunc sed. Justo laoreet sit amet cursus sit amet.",
-      },
+      name: String,
+      location: String,
+      time: String,
+      description: String,
     },
   ],
   dresscode: {
@@ -55,7 +54,7 @@ const weddingSchema = new Schema({
         "casual",
         "tropical",
       ],
-      default: "formal"
+      default: "formal",
     },
   },
   owner: {

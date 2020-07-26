@@ -96,6 +96,7 @@ export default class App extends Component {
     />    
 
      {this.state.user && <Navbar/>}
+     {console.log(this.state.user)}
     </>
     )
   }

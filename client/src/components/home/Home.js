@@ -31,6 +31,7 @@ export default class Home extends Component {
   }
 
   render() {
+    {console.log(this.state.wedding)}
     if(!this.state.wedding){return <> </>}
     else {
       return (
