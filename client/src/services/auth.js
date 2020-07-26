@@ -4,7 +4,6 @@ const signupCouple = (email, password) => {
   return axios
     .post("/api/auth/signup/couple", { email, password })
     .then((response) => {
-      console.log(response)
       return response.data;
     })
     .catch((err) => {
