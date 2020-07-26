@@ -31,18 +31,15 @@ export default class Home extends Component {
   }
 
   render() {
-    {console.log(this.state.wedding)}
     if(!this.state.wedding){return <> </>}
     else {
       return (
         <div>
-          <h1>Hello world</h1>
-          {/* Banner also need profile picture from owner */}
           <Banner wedding={this.state.wedding}/>
-          {/* <Story story={this.state.wedding.story}/> */}
-          {/* <Timeline date={this.state.wedding.date} events={this.state.wedding.events}/> */}
-          {/* <Dresscode dresscode={this.state.wedding.dresscode}/> */}
-          {/* <Contact contact={this.state.wedding.contact}/> */}
+          <Story story={this.state.wedding.story}/>
+          <Timeline wedding={this.state.wedding}/>
+          <Dresscode dresscode={this.state.wedding.dresscode}/>
+          <Contact contact={this.state.wedding.contact}/>
         </div>
       )
     }

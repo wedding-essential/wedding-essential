@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
-import { urlencoded } from 'body-parser'
 
 export default class Banner extends Component {
   render() {
-    console.log(this.props.wedding.owner.imgPath)
+    const img = this.props.wedding.bannerImgPath;
+    const style = {
+      backgroundImage: `url(${img})`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      width: "100%",
+      height: "20%",
+      
+    }
     return (
-      <div >
-          {/* Background image as banner image */}
-          <div><img src={this.props.wedding.owner.imgPath} alt='couple profile picture'/></div>
+      <div style={style} >
+          <div><img src={this.props.wedding.owner.imgPath} style={{width:"100px"}} alt='couple profile picture'/></div>
           <div>{this.props.wedding.date}</div>
       </div>
     )

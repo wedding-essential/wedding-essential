@@ -4,7 +4,7 @@ export default class Story extends Component {
   render() {
     return (
       <div>
-          <h1>Our story</h1>
+          <h2>Our story</h2>
           <p>{this.props.story}</p>
       </div>
     )
