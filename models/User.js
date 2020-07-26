@@ -9,7 +9,7 @@ const userSchema = new Schema({
   partnerFirstName: {type: String, default: "Gretel"},
   partnerLastName: {type: String, default: "Gretelsen"},
   imgName: { type: String, default: "Happy Couple" },
-  imgPath: { type: String, default: "https://unsplash.com/photos/ZsPlbTxFosA" },
+  imgPath: { type: String, default: "https://images.unsplash.com/photo-1519306943444-3e1588e3fd23?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1868&q=80" },
   imgPublicId: String,
   role: {
     type: String,
