@@ -5,7 +5,7 @@ export default class Story extends Component {
     return (
       <div>
           <h2>Our story</h2>
-          <p>{this.props.story}</p>
+          <p>{this.props.story}</p>  
       </div>
     )
   }

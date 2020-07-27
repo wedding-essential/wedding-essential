@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import wedding from '../../DummyWedding.json'
 import Banner from './Banner'
 import Story from './Story'
 import Timeline from './Timeline'
