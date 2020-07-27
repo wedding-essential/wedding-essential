@@ -7,7 +7,7 @@ const handleUpload = (theFile) => {
     .catch(err => err.response.data);
 }
 
-const saveNewThing = (newThing) => {
+const saveNewPicture = (newThing) => {
   // console.log('new thing is: ', newThing)
   return axios.post('/api/gallery/create', newThing)
     .then(response => response.data)
@@ -16,5 +16,5 @@ const saveNewThing = (newThing) => {
 
 export {
   handleUpload,
-  saveNewThing
+  saveNewPicture
 }
