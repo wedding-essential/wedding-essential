@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {logout} from "../../services/auth";
 
-export default class menu extends Component {
+export default class Menu extends Component {
 
   handleLogout = () => {
     logout().then(() => {
@@ -15,7 +15,7 @@ export default class menu extends Component {
       <div>
         <h1>Menu</h1>
         <div>
-          <img src='/images/we-circle-01 1.svg' alt='couple profile picture'/>
+          {/* <img src={logo} alt='couple profile picture'/> */}
           <p>Caroline & Alberto</p>
         </div>
         <div>
