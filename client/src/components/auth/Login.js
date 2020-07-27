@@ -47,7 +47,7 @@ export default class Login extends Component {
           <input type="text" name="email" value={this.state.email} onChange={this.handleChange}></input>
           <label>Password</label>
           <input type="password" name="password" value={this.state.password} onChange={this.handleChange}></input>
-          <button>Next</button>
+          <button type="submit">Next</button>
         </form>
         <h2>No account yet?</h2>
         <h3>
