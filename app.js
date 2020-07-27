@@ -75,4 +75,8 @@ app.use('/api/auth', require('./routes/auth/auth.js'))
 app.use('/api/wedding', require('./routes/wedding/user.js'))
 app.use('/api/wedding', require('./routes/wedding/wedding.js'))
 
+//Cloudinary
+app.use('/api', require('./routes/file-upload-routes'));
+app.use('/api', require('./routes/wedding/gallery'));
+
 module.exports = app;
