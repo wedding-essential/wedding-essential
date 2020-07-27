@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const User = require("../../models/User");
 const Wedding = require("../../models/Wedding");
+const {loginCheck} = require('../auth/middlewares');
 
-router.get("/:id/users", (req, res) => {
+
+router.get("/:id/users", loginCheck(), (req, res) => {
   Wedding.findById(req.params.id)
     .populate("guests")
     .populate("owner")
@@ -15,14 +17,14 @@ router.get("/:id/users", (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 
-router.put("/:id/user", (req, res) => {
+router.put("/:id/user", loginCheck(), (req, res) => {
   const { firstName, lastName, food } = req.body;
   User.findByIdAndUpdate(req.user._id, { firstName, lastName, food })
     .then((user) => res.status(200).json(user))
     .catch((err) => res.status(500).json(err));
 });
 
-router.delete("/:id/user", async (req, res) => {
+router.delete("/:id/user", loginCheck(), async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.user._id);
     res.status(200).json(user);

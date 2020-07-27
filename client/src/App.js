@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import './App.css';
 import Landing from './components/landing/Landing';
 import SignupCouple from './components/auth/SignupCouple'
@@ -8,7 +8,7 @@ import Home from './components/home/Home'
 import Login from './components/auth/Login'
 import Gallery from './components/gallery/Gallery'
 import Navbar from './components/navbar/Navbar'
-import Menu from './components/burgermenu/menu'
+import Menu from './components/burgermenu/Menu'
 import Guests from './components/guests/Guests'
 import Gifts from './components/gifts/Gifts'
 import Profile from './components/profile/Profile'
@@ -54,53 +54,52 @@ export default class App extends Component {
       <Route
         exact
         path='/home'
-        component={Home}
+        render={props => {if (this.state.user) return <Home user={this.state.user} />
+        else return <Redirect to='/'/>}}
       />
       <Route
         exact
         path='/gallery'
-        component={Gallery}
+        render={props => {if (this.state.user) return <Gallery />
+        else return <Redirect to='/'/>}}
       />
       <Route
         exact
         path='/menu'
-        render={props => <Menu setUser={this.setUser} {...props} />}
+        render={props => {if (this.state.user) return <Menu setUser={this.setUser} {...props}/>
+        else return <Redirect to='/'/>} }
       />
       <Route
         exact
         path='/posts'
-        component={Posts}
+        render={props => {if (this.state.user) return <Posts />
+        else return <Redirect to='/'/>}}
       />
       
       <Route
       exact
       path='/guests'
-      component={Guests}
+      render={props => {if (this.state.user) return <Guests />
+        else return <Redirect to='/'/>}}
     />
 
     <Route
       exact
       path='/gifts'
-      component={Gifts}
+      render={props => {if (this.state.user) return <Gifts />
+        else return <Redirect to='/'/>}}
     /> 
     <Route
       exact
       path='/profile'
-      component={Profile}
+      render={props => {if (this.state.user) return <Profile />
+        else return <Redirect to='/'/>}}
     />    
 
-
-
-    <Route
-      exact
-      path='/posts'
-      component={Posts}
-    />
-
-
-    <Navbar/>
-
+    {this.state.user && <Navbar/>}
+    
     <AddThing />
+
     </>
     )
   }

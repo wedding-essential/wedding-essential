@@ -34,7 +34,7 @@
     "description": "Come as you are",
     "category": "blacktie"
   },
-  "owner": "12345678",
+  "owner": {"_id":"12345678"},
   "guests": [
     {
       "_id": "87654321"

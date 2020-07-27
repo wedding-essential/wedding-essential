@@ -25,17 +25,19 @@ router.post("/signup/couple", async (req, res) => {
     const salt = bcrypt.genSaltSync();
     const hash = bcrypt.hashSync(password, salt);
 
-    const user = await User.create({ email, password: hash, role: "couple" });
+    let user = await User.create({ email, password: hash, role: "couple" });
 
     const wedding = await Wedding.create({
       passcode,
       owner: user._id,
     });
 
-    const weddingInCouple = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { email },
       { wedding: wedding._id }
     );
+
+    user = await User.findById(user._id)
 
     req.login(user, (err) => {
       if (err)
@@ -72,22 +74,25 @@ router.post("/signup/guest", async (req, res) => {
     } else {
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(password, salt);
-      const guest = await User.create({ email, password: hash, role: "guest" });
-      const addGuest = await Wedding.findByIdAndUpdate(wedding._id, {
+      let guest = await User.create({ email, password: hash, role: "guest" });
+      
+      await Wedding.findByIdAndUpdate(wedding._id, {
         $push: { guests: guest._id },
       });
 
-      const weddingInGuest = await User.findOneAndUpdate(
+      await User.findOneAndUpdate(
         { email },
         { wedding: wedding._id }
       );
+
+      guest = await User.findById(guest._id);
 
       req.login(guest, (err) => {
         if (err)
           res.status(500).json({ message: "Error while attempting to login" });
         res.json(guest);
       });
-      res.status(200).json(user);
+      res.status(200).json(guest);
     }
   } catch (err) {
     res.json(err);
@@ -100,7 +105,7 @@ router.post("/login", (req, res) => {
       return res.status(500).json({ message: "Error while authenticating" });
     }
     if (!user) {
-      return res.status(400).json({ message: "Wrong credentials" });
+      return res.status(400).json({ message: "Invalid credentials" });
     }
     req.login(user, (err) => {
       if (err) {
@@ -115,7 +120,9 @@ router.post("/login", (req, res) => {
 
 router.delete("/logout", (req, res) => {
   req.logout();
-  res.json({ message: "Successful logout" });
+  req.session.destroy(function (err) {
+    res.json({ message: "Successful logout"});
+  })
 });
 
 router.get("/loggedin", (req, res) => {

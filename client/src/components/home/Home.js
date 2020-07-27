@@ -1,22 +1,47 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import wedding from '../../DummyWedding.json'
 import Banner from './Banner'
 import Story from './Story'
 import Timeline from './Timeline'
 import Dresscode from './Dresscode'
 import Contact from './Contact'
+import axios from 'axios'
+
+
 export default class Home extends Component {
+
+  state = {
+    wedding: null
+  }
+
+  componentDidMount() {
+    this.getData()
+  }
+
+  getData = () => {
+    const weddingId = this.props.user.wedding;
+    axios
+      .get(`/api/wedding/${weddingId}`)
+      .then(response => {
+        this.setState({
+          wedding: response.data
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
-    console.log(wedding)
-    return (
-      <div>
-        {/* Banner also need profile picture from owner */}
-        <Banner imgName={wedding.bannerImgName} imgPath={wedding.bannerImgPath} imgId={wedding.bannerImgPublicId}/>
-        <Story story={wedding.story}/>
-        <Timeline date={wedding.date} events={wedding.events}/>
-        <Dresscode dresscode={wedding.dresscode}/>  
-        <Contact contact={wedding.contact}/>
-      </div>
-    )
+    if(!this.state.wedding){return <> </>}
+    else {
+      return (
+        <div>
+          <Banner wedding={this.state.wedding}/>
+          <Story story={this.state.wedding.story}/>
+          <Timeline wedding={this.state.wedding}/>
+          <Dresscode dresscode={this.state.wedding.dresscode}/>
+          <Contact contact={this.state.wedding.contact}/>
+        </div>
+      )
+    }
   }
 }
