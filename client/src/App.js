@@ -66,7 +66,7 @@ export default class App extends Component {
       <Route
         exact
         path='/menu'
-        render={props => {if (this.state.user) return <Menu setUser={this.setUser} {...props}/>
+        render={props => {if (this.state.user) return <Menu setUser={this.setUser} {...props} user={this.state.user}/>
         else return <Redirect to='/'/>} }
       />
       <Route
