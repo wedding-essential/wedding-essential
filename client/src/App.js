@@ -80,7 +80,7 @@ export default class App extends Component {
       <Route
       exact
       path='/guests'
-      render={props => {if (this.state.user) return <Guests />
+      render={props => {if (this.state.user) return <Guests  user={this.state.user}/>
         else return <Redirect to='/'/>}}
     />
 

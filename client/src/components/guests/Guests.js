@@ -1,40 +1,52 @@
-import React, { Component } from 'react'
-import GuestList from './GuestList';
-import axios from 'axios';
-
+import React, { Component } from "react";
+// import GuestList from './GuestList';
+import axios from "axios";
 
 export default class Guests extends Component {
-  // state = {
-  //   guests: []
-  // };
+  state = {
+    wedding: null,
+  };
 
-  // componentDidMount = () => {
-  //   this.getData();
-  // };
+  componentDidMount() {
+    this.getData();
+  }
 
-  // getData = () => {
-  //   axios
-  //     .get('/api/wedding/${id}guests')
-  //     .then(response => {
-  //       this.setState({
-  //         guests: response.data
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
+  getData = () => {
+    const weddingId = this.props.user.wedding;
+    axios
+      .get(`/api/wedding/${weddingId}`)
+      .then((response) => {
+        this.setState({
+          wedding: response.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
   render() {
-    return (
-      <>
-      <div>
-        <h2>Guests</h2>
-      </div>
-      <div className='guests-container'>
-        {/* <GuestList guests={DummyGuests.guestlist} /> */}
-      </div>
-      </>
-    );
+    if (!this.state.wedding) {
+      return <> </>;
+    } else {
+      console.log(this.state.wedding.guests);
+      return (
+        <>
+          <div>
+            <h2>Guests</h2>
+          </div>
+          <div>
+            {this.state.wedding.guests.map((guest) => {
+              return (
+                <div>
+                  <h2>{guest.firstName}</h2>
+                  <p>{guest.food}</p>
+                  <button id={guest._id}>Edit</button>
+                  <button id={guest._id}>Delete</button>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      );
+    }
   }
 }
