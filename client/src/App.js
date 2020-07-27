@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import {Route, Redirect} from 'react-router-dom'
 import './App.css';
@@ -5,6 +6,7 @@ import Landing from './components/landing/Landing';
 import SignupCouple from './components/auth/SignupCouple'
 import SignupGuest from './components/auth/SignupGuest'
 import Home from './components/home/Home'
+import EditHome from "./components/home/EditHome";
 import Login from './components/auth/Login'
 import Gallery from './components/gallery/Gallery'
 import Navbar from './components/navbar/Navbar'
@@ -16,18 +18,16 @@ import Posts from './components/posts/Posts'
 import AddPicture from './components/AddPicture';
 import EditProfile from './components/profile/EditProfile'
 
-
 export default class App extends Component {
-  
   state = {
-    user: this.props.user
-  }
+    user: this.props.user,
+  };
 
-  setUser = user => {
+  setUser = (user) => {
     this.setState({
-      user: user
-    })
-  }
+      user: user,
+    });
+  };
 
   render() {
     return (
@@ -58,6 +58,14 @@ export default class App extends Component {
         render={props => {if (this.state.user) return <Home user={this.state.user} />
         else return <Redirect to='/'/>}}
       />
+      <Route
+          exact
+          path="/edithome"
+          render={(props) => {
+            if (this.state.user) return <EditHome {...props} user={this.state.user} />;
+            else return <Redirect to="/" />;
+          }}
+        />
       <Route
         exact
         path='/gallery'
@@ -106,8 +114,7 @@ export default class App extends Component {
     {this.state.user && <Navbar/>}
     
     <AddPicture user={this.state.user}/>
-
-    </>
-    )
+      </>
+    );
   }
 }

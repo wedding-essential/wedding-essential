@@ -24,8 +24,9 @@ router.get("/:id", loginCheck(), (req, res) => {
 
 router.put("/:id", loginCheck(), async (req, res) => {
   try {
-    const {date, story} = req.body;
-    const wedding = await Wedding.findByIdAndUpdate("5f19b89b1aa0c8b111889f8b", {date, story});
+    const {story} = req.body;
+    console.log('req.body', req.body)
+    const wedding = await Wedding.findByIdAndUpdate(req.params.id, {story}, {new: true});
     res.status(200).json(wedding);
   } catch (err) {
     res.status(500).json(err);
