@@ -13,6 +13,7 @@ import Guests from './components/guests/Guests'
 import Gifts from './components/gifts/Gifts'
 import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
+import AddThing from './components/AddThing';
 
 
 export default class App extends Component {
@@ -95,7 +96,10 @@ export default class App extends Component {
         else return <Redirect to='/'/>}}
     />    
 
-     {this.state.user && <Navbar/>}
+    {this.state.user && <Navbar/>}
+    
+    <AddThing />
+
     </>
     )
   }
