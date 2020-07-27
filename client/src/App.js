@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react'
 import {Route} from 'react-router-dom'
 import './App.css';
 import Landing from './components/landing/Landing';
@@ -16,46 +16,63 @@ import Posts from './components/posts/Posts'
 import AddThing from './components/AddThing';
 
 
-function App() {
-  return (
-    <>
-    <Route
-      exact
-      path='/'
-      component={Landing}
-    />
-    <Route
-      exact
-      path='/signup/couple'
-      component={SignupCouple}
-    />
-    <Route
-      exact
-      path='/signup/guest'
-      component={SignupGuest}
-    />
-    <Route
-      exact
-      path='/login'
-      component={Login}
-    />
-    <Route
-      exact
-      path='/home'
-      component={Home}
-    />
-    <Route
-      exact
-      path='/gallery'
-      component={Gallery}
-    />
-    <Route
-      exact
-      path='/menu'
-      component={Menu}
-    />
+export default class App extends Component {
+  
+  state = {
+    user: this.props.user
+  }
 
-    <Route
+  setUser = user => {
+    this.setState({
+      user: user
+    })
+  }
+
+  render() {
+    return (
+    <>
+      <Route
+        exact
+        path='/'
+        component={Landing}
+      />
+      <Route
+        exact
+        path='/signup/couple'
+        render={props => <SignupCouple setUser={this.setUser} {...props} />}
+      />
+      <Route
+        exact
+        path='/signup/guest'
+        render={props => <SignupGuest setUser={this.setUser} {...props} />}
+      />
+      <Route
+        exact
+        path='/login'
+        render={props => <Login setUser={this.setUser} {...props} />}
+      />
+      <Route
+        exact
+        path='/home'
+        component={Home}
+      />
+      <Route
+        exact
+        path='/gallery'
+        component={Gallery}
+      />
+      <Route
+        exact
+        path='/menu'
+        render={props => <Menu setUser={this.setUser} {...props} />}
+      />
+      <Route
+        exact
+        path='/posts'
+        component={Posts}
+      />
+      
+      <Route
       exact
       path='/guests'
       component={Guests}
@@ -85,7 +102,6 @@ function App() {
 
     <AddThing />
     </>
-  );
+    )
+  }
 }
-
-export default App;

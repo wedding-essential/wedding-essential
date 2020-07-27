@@ -15,9 +15,10 @@
   "bannerImgPublicId": "1234566",
   "date": "12.08.2020",
   "story": "Is this really the best decision I made ?",
-  "event": [
+  "events": [
     {
-      "name": "ceremony",
+      "id":"123458432",
+      "name": "Ceremony",
       "location": "Notre Dame de Paris",
       "time": "11h",
       "description": "Follow the smoke"
