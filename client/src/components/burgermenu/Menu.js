@@ -20,7 +20,6 @@ export default class Menu extends Component {
   }
 
   getData = () => {
-  
     const weddingId = this.props.user.wedding;
     axios
       .get(`/api/wedding/${weddingId}`)
@@ -33,8 +32,7 @@ export default class Menu extends Component {
   }
 
   render() {
-    console.log(this.props.user)
-    console.log(this.state.wedding)
+   
     if(!this.state.wedding){return <> </>}
     else {
     return (
@@ -49,7 +47,7 @@ export default class Menu extends Component {
           <p>{this.state.wedding.passcode}</p>
         </div>
         <div><Link to='/guests'>Guest list</Link></div>
-        <div><Link to='/profile'>Settings</Link></div>
+        <div><Link to='/profile'>Profile</Link></div>
         <div><Link to='/' onClick={() => this.handleLogout(this.props)}>Logout</Link></div>
       </div>
     )

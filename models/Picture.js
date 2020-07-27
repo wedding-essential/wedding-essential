@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const PictureSchema = new Schema({
   imageUrl: { type: String, required: true },
-  imgPath: { type: String, required: true },
+  public_id:String,
+
   wedding: {
     type: Schema.Types.ObjectId,
     ref: "Wedding",
