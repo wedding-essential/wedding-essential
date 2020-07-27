@@ -8,9 +8,9 @@ const handleUpload = (theFile) => {
 }
 
 const saveNewPicture = (newThing) => {
-  // console.log('new thing is: ', newThing)
-  return axios.post('/api/gallery/create', newThing)
-    .then(response => response.data)
+  return axios.post('/api/picture/create', newThing)
+    .then(response => {
+      return response.data})
     .catch(err => err.response.data);
 } 
 

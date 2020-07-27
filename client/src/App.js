@@ -60,7 +60,7 @@ export default class App extends Component {
       <Route
         exact
         path='/gallery'
-        render={props => {if (this.state.user) return <Gallery />
+        render={props => {if (this.state.user) return <Gallery user={this.state.user} />
         else return <Redirect to='/'/>}}
       />
       <Route
@@ -98,7 +98,7 @@ export default class App extends Component {
 
     {this.state.user && <Navbar/>}
     
-    <AddPicture />
+    <AddPicture user={this.state.user}/>
 
     </>
     )
