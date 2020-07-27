@@ -99,7 +99,7 @@ export default class App extends Component {
     <Route
       exact
       path='/editprofile'
-      render={props => {if (this.state.user) return <EditProfile user={this.state.user} />
+      render={props => {if (this.state.user) return <EditProfile user={this.state.user} {...props} setUser={this.setUser}/>
         else return <Redirect to='/'/>}}
     />    
 

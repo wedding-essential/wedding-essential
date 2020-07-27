@@ -18,9 +18,11 @@ router.get("/:id/users", loginCheck(), (req, res) => {
 });
 
 router.put("/:id/user", loginCheck(), (req, res) => {
-  const { firstName, lastName, food } = req.body;
-  User.findByIdAndUpdate(req.user._id, { firstName, lastName, food })
-    .then((user) => res.status(200).json(user))
+  const { email, password, firstName, lastName, partnerFirstName, partnerLastName, food } = req.body;
+  User.findByIdAndUpdate(req.user._id, { email, password, firstName, lastName, partnerFirstName, partnerLastName, food }, {new :true})
+    .then((user) => {
+      console.log(user)
+      res.json(user)})
     .catch((err) => res.status(500).json(err));
 });
 
