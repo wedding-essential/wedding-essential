@@ -14,6 +14,7 @@ import Gifts from './components/gifts/Gifts'
 import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
 import AddPicture from './components/AddPicture';
+import EditProfile from './components/profile/EditProfile'
 
 
 export default class App extends Component {
@@ -92,13 +93,19 @@ export default class App extends Component {
     <Route
       exact
       path='/profile'
-      render={props => {if (this.state.user) return <Profile />
+      render={props => {if (this.state.user) return <Profile user={this.state.user} />
+        else return <Redirect to='/'/>}}
+    />
+    <Route
+      exact
+      path='/editprofile'
+      render={props => {if (this.state.user) return <EditProfile user={this.state.user} />
         else return <Redirect to='/'/>}}
     />    
 
     {this.state.user && <Navbar/>}
     
-    <AddPicture />
+    {/* <AddPicture /> */}
 
     </>
     )
