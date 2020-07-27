@@ -32,22 +32,37 @@ export default class Profile extends Component {
         <div>
           <h1>Profile</h1>
         </div>
-        <h2>
-          {this.props.user.firstName} {this.props.user.lastName} &{" "}
-          {this.props.user.partnerFirstName} {this.props.user.partnerLastName}
-        </h2>
         <div className="profile-container">
           {/* <img src={this.state.profileImgPath}/> */}
-          <div>
+
+            {this.props.user.role === 'couple' && 
+            <>
+              <h3>Email</h3>
+              <p>{this.props.user.email}</p>
+              <h3>Password</h3>
+              <p>*********</p>
+              <h3>1st soul mate</h3>
+              <p>{this.props.user.firstName} {this.props.user.lastName}</p>
+              <h3>2nd soul mate</h3>
+              <p>{this.props.user.firstName} {this.props.user.lastName}</p>
+              <Link to='/editprofile'>Change</Link>
+            </>
+            
+            }
+
+            {this.props.user.role === 'guest' &&
+            <>
             <h3>Email</h3>
             <p>{this.props.user.email}</p>
             <h3>Password</h3>
             <p>*********</p>
+            <h3>Name</h3>
+            <p>{this.props.user.firstName} {this.props.user.lastName}</p>
+            <h3>Food preference</h3>
+            <p>{this.props.user.food}</p>
             <Link to='/editprofile'>Change</Link>
-          </div>
-          <div>
-            <button>Delete Wedding</button>
-          </div>
+            </>}
+            
         </div>
       </>
     );
