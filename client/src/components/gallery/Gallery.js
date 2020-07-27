@@ -8,7 +8,7 @@ export default class Gallery extends Component {
         {/* for each photo in the Gallery */}
         <div><img src='/images/we-circle-01 1.svg'/></div>
         <div><img src='/images/we-circle-01 1.svg'/></div>
-        <AddPicture />
+        <AddPicture user={this.props.user}/>
 
       </div>
     )
