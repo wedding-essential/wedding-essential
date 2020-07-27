@@ -1,9 +1,9 @@
 import React, { Component } from "react";
  
 // import the service file since we need them to send (and get) the data to(from) server
-import { handleUpload, saveNewThing } from '../api/service';
+import { handleUpload, saveNewPicture } from './api/service';
  
-class AddThing extends Component {
+class AddPicture extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,13 +43,13 @@ class AddThing extends Component {
         e.preventDefault();
         
         if (this.state.uploadOn) return; // do nothing if the file is still being uploaded
-        saveNewThing(this.state)
+        saveNewPicture(this.state)
         .then(res => {
             console.log('added: ', res);
             // here you would redirect to some other page 
         })
         .catch(err => {
-            console.log("Error while adding the thing: ", err);
+            console.log("Error while adding the picture: ", err);
         });
     }  
     
@@ -60,11 +60,11 @@ class AddThing extends Component {
                 <input 
                     type="file" 
                     onChange={(e) => this.handleFileUpload(e)} /> 
-                <button type="submit" disabled={this.state.uploadOn}>Save new thing</button>
+                <button type="submit" disabled={this.state.uploadOn}>Save new Picture</button>
             </form>
           </div>
         );
     }
 }
  
-export default AddThing;
+export default AddPicture;

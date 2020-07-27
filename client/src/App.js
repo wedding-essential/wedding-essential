@@ -13,7 +13,7 @@ import Guests from './components/guests/Guests'
 import Gifts from './components/gifts/Gifts'
 import Profile from './components/profile/Profile'
 import Posts from './components/posts/Posts'
-import AddThing from './components/AddThing';
+import AddPicture from './components/AddPicture';
 
 
 export default class App extends Component {
@@ -98,7 +98,7 @@ export default class App extends Component {
 
     {this.state.user && <Navbar/>}
     
-    <AddThing />
+    <AddPicture />
 
     </>
     )

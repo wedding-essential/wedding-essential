@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const GallerySchema = new Schema({
+const PictureSchema = new Schema({
   imageUrl: { type: String, required: true },
   imgPath: { type: String, required: true },
   wedding: {
@@ -10,5 +10,5 @@ const GallerySchema = new Schema({
   },
 })
 
-const Gallery = mongoose.model('Gallery', GallerySchema);
-module.exports = Gallery;
+const Picture = mongoose.model('Picture', PictureSchema);
+module.exports = Picture;
