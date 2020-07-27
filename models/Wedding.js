@@ -5,9 +5,8 @@ const weddingSchema = new Schema({
   passcode: String,
   gallery: [
     {
-      imgName: String,
-      imgPath: String,
-      imgPublicId: String,
+     type:Schema.Types.ObjectId,
+     ref:"Picture"
     },
   ],
   bannerImgName: {
