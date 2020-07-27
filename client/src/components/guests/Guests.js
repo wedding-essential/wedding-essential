@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import GuestList from './GuestList';
 import axios from 'axios';
-import DummyGuests from '../../DummyGuests.json'
+
 
 export default class Guests extends Component {
   // state = {
@@ -32,7 +32,7 @@ export default class Guests extends Component {
         <h2>Guests</h2>
       </div>
       <div className='guests-container'>
-        <GuestList guests={DummyGuests.guestlist} />
+        {/* <GuestList guests={DummyGuests.guestlist} /> */}
       </div>
       </>
     );
