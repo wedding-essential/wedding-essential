@@ -98,7 +98,7 @@ export default class App extends Component {
 
     {this.state.user && <Navbar/>}
     
-    <AddPicture />
+    <AddPicture user={this.state.user}/>
 
     </>
     )

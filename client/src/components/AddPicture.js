@@ -7,8 +7,10 @@ class AddPicture extends Component {
     constructor(props) {
         super(props);
         this.state = {
+        wedding:this.props.user.wedding,
           imageUrl: "",
-          uploadOn: false
+          uploadOn: false,
+          public_id:""
         };
     }
     
@@ -31,7 +33,7 @@ class AddPicture extends Component {
         .then(response => {
             // console.log('response is: ', response);
             // after the console.log we can see that response carries 'secure_url' which we can use to update the state 
-            this.setState({ imageUrl: response.secure_url, uploadOn: false });
+            this.setState({ imageUrl: response.secure_url,public_id:response.public_id, uploadOn: false });
           })
           .catch(err => {
             console.log("Error while uploading the file: ", err);
@@ -41,8 +43,10 @@ class AddPicture extends Component {
     // this method submits the form
     handleSubmit = e => {
         e.preventDefault();
-        
-        if (this.state.uploadOn) return; // do nothing if the file is still being uploaded
+        console.log("working")
+        if (this.state.uploadOn) {
+        console.log("happening")
+        return}; // do nothing if the file is still being uploaded
         saveNewPicture(this.state)
         .then(res => {
             console.log('added: ', res);
@@ -60,7 +64,7 @@ class AddPicture extends Component {
                 <input 
                     type="file" 
                     onChange={(e) => this.handleFileUpload(e)} /> 
-                <button type="submit" disabled={this.state.uploadOn}>Save new Picture</button>
+                <button type="submit"  onClick={e => this.handleSubmit(e)} disabled={this.state.uploadOn}>Save new Picture</button>
             </form>
           </div>
         );
