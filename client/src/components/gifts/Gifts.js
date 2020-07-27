@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import GiftList from './GiftList.js';
 import axios from 'axios';
-import DummyGifts from '../../DummyGifts.json'
+
 
 export default class Gifts extends Component {
   // state = {
@@ -33,7 +33,7 @@ export default class Gifts extends Component {
         <h2>Gifts</h2>
       </div>
       <div className='gifts-container'>
-        <GiftList gifts={DummyGifts.giftlist} />
+        {/* <GiftList gifts={DummyGifts.giftlist} /> */}
       </div>
       </>
     );
