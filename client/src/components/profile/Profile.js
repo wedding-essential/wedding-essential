@@ -34,7 +34,7 @@ export default class Profile extends Component {
             <h1>Profile</h1>
           </div>
           <div className="profile-container">
-            {/* <img src={this.state.profileImgPath}/> */}
+            <img src={this.props.user.imgPath} style={{height:'200px'}}/>
   
               {this.props.user.role === 'couple' && 
               <>

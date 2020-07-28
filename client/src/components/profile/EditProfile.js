@@ -49,7 +49,7 @@ export default class Profile extends Component {
           <h1>Profile</h1>
         </div>
         <div className="profile-container">
-          {/* <img src={this.state.profileImgPath}/> */}
+          <AddPicture handler='profile' user= {this.props.user}/>
 
           {this.props.user.role === "couple" && (
             <>
