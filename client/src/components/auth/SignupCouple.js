@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signupCouple } from "../../services/auth";
+import { Container } from "./styles";
+import logo from '../../images/we-circle-logo.svg'
 
 export default class SignupCouple extends Component {
   state = {
@@ -19,28 +21,27 @@ export default class SignupCouple extends Component {
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const { email, password } = this.state;
 
-    signupCouple(email, password).then(data => {
+    signupCouple(email, password).then((data) => {
       if (data.message) {
         this.setState({
           message: data.message,
-        })
+        });
       } else {
         this.props.setUser(data);
-        this.props.history.push('/home');
+        this.props.history.push("/home");
       }
-    })
-  }
+    });
+  };
 
   render() {
     return (
-      <div>
-        <div>
-          <img src="/images/we-circle-01 1.svg" alt="WE logo" />
-        </div>
+      <Container>
+        <img src={logo} alt="WE logo" />
+
         <h1>Sign Up to Create your Wedding</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="email">Email</label>
@@ -67,7 +68,7 @@ export default class SignupCouple extends Component {
         <h2>
           Already have an account ? <Link to="/login">Log in</Link>
         </h2>
-      </div>
+      </Container>
     );
   }
 }

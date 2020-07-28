@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import logo from '../../images/we-circle-logo.svg'
+import { Container } from './styles';
+
 
 export default class Landing extends Component {
   render() {
     return (
-      <div>
-        <div><img src='/images/we-circle-01 1.svg' alt='WE logo'/></div>
+      <Container>
+        <img src={logo} alt='WE logo'/>
 
-        <div><Link to='/signup/couple'>Getting married ?</Link></div>
-        <div><Link to='/signup/guest'>Attending a wedding ?</Link></div>
+        <Link to='/signup/couple'><button>GETTING MARRIED?</button></Link>
+        <Link to='/signup/guest'><button>ATTENDING A WEDDING?</button></Link>
         
-      </div>
+      </Container>
     )
   }
 }
