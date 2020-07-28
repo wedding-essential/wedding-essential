@@ -4,7 +4,7 @@ import { gold } from "../../styles/colors";
 export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  height: 80vh;
+  height: 90vh;
   align-items: center;
   justify-content: center;
   margin: 4% 2%;
@@ -14,8 +14,8 @@ export const Container = styled.div`
   }
 
   button {
-    background: gold;
-    border: 1px solid gold;
+    background: ${gold};
+    border: 1px solid ${gold};
     border-radius: 27px;
     padding: 20px 10px;
     margin: 10px 0;

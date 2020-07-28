@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
-    color: gold;
+    color: ${gold};
   }
 `;
 

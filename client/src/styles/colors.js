@@ -1,3 +1,4 @@
 const gold = "#E8BE46";
+const grey = "#E8E8E8";
 
-export { gold };
+export { gold, grey };

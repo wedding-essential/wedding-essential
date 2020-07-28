@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { gold } from "../../styles/colors";
+import { gold, grey } from "../../styles/colors";
 
 export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  height: 80vh;
+  height: 90vh;
   align-items: center;
   justify-content: center;
   margin: 4% 2%;
@@ -14,7 +14,8 @@ export const Container = styled.div`
     font-weight: bold;
     font-size: 19px;
     line-height: 28px;
-    color: gold;
+    color: ${gold};
+    margin-bottom: 10px;
   }
 
   h2 {
@@ -37,12 +38,28 @@ export const Container = styled.div`
     margin-bottom: 40px;
   }
 
-  button {
-    background: gold;
-    border: 1px solid gold;
-    border-radius: 27px;
+  .buttons {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  input {
+    background-color: ${grey};
+    border: 1px solid ${gold};
+    border-radius: 3px;
     padding: 10px 10px;
-    margin: 10px 0;
+  }
+
+  label {
+    margin-top: 10px;
+  }
+
+  button {
+    background: ${gold};
+    border: 1px solid ${gold};
+    border-radius: 27px;
+    padding: 5px 5px;
+    margin: 10px 5px;
     width: 125px;
     font-size: 13px;
     color: white;

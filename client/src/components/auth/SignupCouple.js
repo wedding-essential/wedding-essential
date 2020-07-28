@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signupCouple } from "../../services/auth";
 import { Container } from "./styles";
-import logo from '../../images/we-circle-logo.svg'
+import logo from "../../images/we-circle-logo.svg";
 
 export default class SignupCouple extends Component {
   state = {
@@ -61,9 +61,15 @@ export default class SignupCouple extends Component {
             required
           ></input>
           {this.state.message && <p>{this.state.message}</p>}
-          <button type="submit" value="submit">
-            Next
-          </button>
+
+          <div className="buttons">
+            <Link to="/">
+              <button>Back</button>
+            </Link>
+            <button type="submit" value="submit">
+              Next
+            </button>
+          </div>
         </form>
         <h2>
           Already have an account ? <Link to="/login">Log in</Link>
