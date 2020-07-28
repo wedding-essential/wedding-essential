@@ -49,7 +49,6 @@ export default class Profile extends Component {
           <h1>Profile</h1>
         </div>
         <div className="profile-container">
-          {/* <img src={this.state.profileImgPath}/> */}
 
           {this.props.user.role === "couple" && (
             <>

@@ -5,8 +5,8 @@ const weddingSchema = new Schema({
   passcode: String,
   gallery: [
     {
-     type:Schema.Types.ObjectId,
-     ref:"Picture"
+      type: Schema.Types.ObjectId,
+      ref: "Picture",
     },
   ],
   bannerImgName: {
@@ -15,12 +15,13 @@ const weddingSchema = new Schema({
   },
   bannerImgPath: {
     type: String,
-    default: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    default:
+      "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
   },
   bannerImgPublicId: String,
   date: {
-    type: Date,
-    default: Date.now() + 365*24*60*60*1000,
+    type: String,
+    default: Date.now() + 365 * 24 * 60 * 60 * 1000,
   },
   story: {
     type: String,
@@ -29,32 +30,26 @@ const weddingSchema = new Schema({
   },
   events: [
     {
-      id: String,
+      // id: String,
       name: String,
       location: String,
       time: String,
       description: String,
+      
     },
   ],
   dresscode: {
-    description: {
-      type: String,
-      default:
-        "Lorem ipsum dolor sit amet. Cras pulvinar mattis nunc sed. Justo laoreet sit amet cursus sit amet.",
-    },
-    category: {
-      type: String,
-      enum: [
-        "other",
-        "blacktie",
-        "formal",
-        "semi-formal",
-        "festive",
-        "casual",
-        "tropical",
-      ],
-      default: "formal",
-    },
+    type: String,
+    enum: [
+      "other",
+      "blacktie",
+      "formal",
+      "semi-formal",
+      "festive",
+      "casual",
+      "tropical",
+    ],
+    default: "formal",
   },
   owner: {
     type: Schema.Types.ObjectId,
@@ -67,8 +62,8 @@ const weddingSchema = new Schema({
     },
   ],
   contact: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    name: { type: String, default: "Pepita Perez" },
+    email: { type: String, default: "popota@gmail.com" },
   },
 });
 

@@ -1,9 +1,8 @@
 const express = require("express");
 const Wedding = require("../../models/Wedding");
 const User = require("../../models/User");
-const {loginCheck} = require('../auth/middlewares');
+const { loginCheck } = require("../auth/middlewares");
 const router = express.Router();
-
 
 router.get("/:id", loginCheck(), (req, res) => {
   Wedding.findById(req.params.id)
@@ -22,20 +21,92 @@ router.get("/:id", loginCheck(), (req, res) => {
     });
 });
 
+router.put("/test/:id", async (req, res) => {
+  // return res.json({...req.body})
+  try {
+    const {
+      eventName,
+      eventTime = new Date(),
+      eventLocation,
+      eventDescription,
+    } = req.body;
+    const wedding = await Wedding.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: {
+          events: {
+            name: eventName,
+            time: eventTime,
+            location: eventLocation,
+            description: eventDescription,
+          },
+        },
+      },
+      { new: true }
+    );
+
+    console.log(wedding);
+    res.json(wedding);
+  } catch (error) {
+    console.log(error);
+    res.json(false);
+  }
+});
+
 router.put("/:id", loginCheck(), async (req, res) => {
   try {
-    const {story} = req.body;
-    console.log('req.body', req.body)
-    const wedding = await Wedding.findByIdAndUpdate(req.params.id, {story}, {new: true});
+    const {
+      story,
+      date,
+      dresscode,
+      eventName,
+      eventTime,
+      eventLocation,
+      eventDescription,
+    } = req.body;
+    console.log("req.body", req.body);
+    let wedding;
+    const eventStuff = {
+      eventName,
+      eventTime,
+      eventLocation,
+      eventDescription,
+    };
+    const canEditEvent =
+      Object.values(eventStuff).filter((el) => el).length === 4;
+    if (canEditEvent)
+      wedding = await Wedding.findByIdAndUpdate(
+        req.params.id,
+        {
+          $push: {
+            events: {
+              name: eventName,
+              time: eventTime,
+              location: eventLocation,
+              description: eventDescription,
+            },
+          },
+        },
+        { new: true }
+      );
+    else {
+      wedding = await Wedding.findByIdAndUpdate(
+        req.params.id,
+        { story, date, dresscode },
+        { new: true }
+      );
+    }
+    // console.log("WEDDIIIIING", wedding);
     res.status(200).json(wedding);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
 
 router.delete("/:id", loginCheck(), async (req, res) => {
   try {
-    const users = await User.deleteMany({wedding: req.params.id});
+    const users = await User.deleteMany({ wedding: req.params.id });
     const wedding = await Wedding.findByIdAndDelete(req.params.id);
     res.status(200).json(wedding);
   } catch (err) {
