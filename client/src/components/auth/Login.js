@@ -1,60 +1,77 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {login} from "../../services/auth";
+import { login } from "../../services/auth";
+import { Container } from "./styles";
+import logo from "../../images/we-circle-logo.svg";
 
 export default class Login extends Component {
   state = {
-    email: '',
-    password: '',
-    message: ''
+    email: "",
+    password: "",
+    message: "",
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const { email, password } = this.state;
-    login(email, password).then(data => {
+    login(email, password).then((data) => {
       if (data.message) {
         this.setState({
           message: data.message,
-          email: '',
-          password: ''
+          email: "",
+          password: "",
         });
       } else {
         this.props.setUser(data);
-        this.props.history.push('/home');
+        this.props.history.push("/home");
       }
     });
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const target = event.target;
     const name = target.name;
     const value = target.value;
     this.setState({
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   render() {
     return (
-      <div>
-        <div>
-          <img src="/images/we-circle-01 1.svg" alt="WE logo" />
-        </div>
+      <Container>
+        <img src={logo} alt="WE logo" />
+
         <h1>Login to a wedding</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="email">Email</label>
-          <input type="text" name="email" value={this.state.email} onChange={this.handleChange}></input>
+          <input
+            type="text"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
+          ></input>
           <label>Password</label>
-          <input type="password" name="password" value={this.state.password} onChange={this.handleChange}></input>
-          <button type="submit">Next</button>
+          <input
+            type="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          ></input>
+          <div className="buttons">
+            <Link to="/">
+              <button>Back</button>
+            </Link>
+            <button type="submit" value="submit">
+              Next
+            </button>
+          </div>
         </form>
-        <h2>No account yet?</h2>
-        <h3>
-          Sign up as a <Link to="/signup/couple">Couple</Link> or a{" "}
+        <h2>
+          No account yet ? Sign up as a <Link to="/signup/couple">Couple</Link> or a{" "}
           <Link to="/signup/guest">Guest</Link>
-        </h3>
-      </div>
+        </h2>
+      </Container>
     );
   }
 }
