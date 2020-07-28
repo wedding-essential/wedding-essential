@@ -9,6 +9,10 @@ export default class EditHome extends Component {
     dressCategory: "",
     contactName: "",
     contactEmail: "",
+    eventName: "",
+    eventTime: "",
+    eventLocation: "",
+    eventDescription: "",
   };
 
   componentDidMount() {
@@ -21,8 +25,8 @@ export default class EditHome extends Component {
       .get(`/api/wedding/${weddingId}`)
       .then((response) => {
         const { story, date, dresscode } = response.data;
-        const contactName = response.data.contact.name
-        const contactEmail = response.data.contact.email
+        const contactName = response.data.contact.name;
+        const contactEmail = response.data.contact.email;
         this.setState({
           story,
           date,
@@ -44,13 +48,30 @@ export default class EditHome extends Component {
   };
 
   handleSubmit = (event) => {
+    const {
+      eventDescription,
+      eventLocation,
+      eventName,
+      eventTime,
+      contactEmail,
+      date,
+      dressCategory,
+      contactName,
+    } = this.state;
     event.preventDefault();
     axios
       .put(`/api/wedding/${this.props.user.wedding}`, {
         story: this.state.story,
         date: this.state.date,
         dresscode: this.state.dressCategory,
-        contact: {contactName:this.state.contactName, contactEmail:this.state.contactEmail}
+        contact: {
+          contactName: this.state.contactName,
+          contactEmail: this.state.contactEmail,
+        },
+        eventDescription,
+        eventLocation,
+        eventTime,
+        eventName,
       })
       .then((response) => {
         this.props.history.push("/home");
@@ -61,6 +82,7 @@ export default class EditHome extends Component {
   };
 
   render() {
+    console.log("STAITE , ", this.state);
     return (
       <>
         <h2>Banner image</h2>
@@ -106,8 +128,6 @@ export default class EditHome extends Component {
             <option value="tropical">Tropical</option>
             <option value="other">Other</option>
           </select>
-          
-
 
           <h1>Bridesmaid</h1>
           <label htmlFor="contactName">
@@ -133,6 +153,52 @@ export default class EditHome extends Component {
           ></input>
 
           <button type="submit">Save</button>
+        </form>
+
+        <form onSubmit={this.handleSubmit}>
+          <h1>Events</h1>
+          <label htmlFor="eventName">
+            <h2>Name</h2>
+          </label>
+          <input
+            id="eventName"
+            name="eventName"
+            type="text"
+            onChange={this.handleChange}
+            defaultValue={this.state.eventName}
+          ></input>
+          <label htmlFor="eventTime">
+            <h2>Time</h2>
+          </label>
+          <input
+            id="eventTime"
+            name="eventTime"
+            type="text"
+            onChange={this.handleChange}
+            defaultValue={this.state.eventTime}
+          ></input>
+          <label htmlFor="eventLocation">
+            <h2>Location</h2>
+          </label>
+          <input
+            id="eventLocation"
+            name="eventLocation"
+            type="text"
+            onChange={this.handleChange}
+            defaultValue={this.state.eventLocation}
+          ></input>
+          <label htmlFor="eventDescription">
+            <h2>Description</h2>
+          </label>
+          <input
+            id="eventDescription"
+            name="eventDescription"
+            type="text"
+            onChange={this.handleChange}
+            defaultValue={this.state.eventDescription}
+          ></input>
+
+          <button type="submit">Add an Event</button>
         </form>
       </>
     );

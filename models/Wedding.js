@@ -30,7 +30,7 @@ const weddingSchema = new Schema({
   },
   events: [
     {
-      id: String,
+      // id: String,
       name: String,
       location: String,
       time: String,
