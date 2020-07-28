@@ -38,7 +38,7 @@ export default class Home extends Component {
           <Story story={this.state.wedding.story}/>
           <Timeline wedding={this.state.wedding}/>
           <Dresscode dresscode={this.state.wedding.dresscode}/>
-          <Contact contact={this.state.wedding.contact}/>
+          <Contact wedding={this.state.wedding}/>
         </div>
       )
     }
