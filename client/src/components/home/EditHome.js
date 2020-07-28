@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import AddPicture from '../AddPicture'
 
 export default class EditHome extends Component {
   state = {
@@ -46,6 +47,12 @@ export default class EditHome extends Component {
 
   render() {
     return (
+      <>
+      <h2>Banner image</h2>
+      <AddPicture handler='banner' user={this.props.user}/>
+      <h2>Profile image</h2>
+      <AddPicture handler='profile' user={this.props.user}/>
+
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="story">
           <h2>Our Story</h2>
@@ -59,6 +66,7 @@ export default class EditHome extends Component {
 
         <button type="submit">Save</button>
       </form>
+      </>
     );
   }
 }
