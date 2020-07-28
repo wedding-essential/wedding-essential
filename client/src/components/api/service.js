@@ -14,7 +14,24 @@ const saveNewPicture = (newThing) => {
     .catch(err => err.response.data);
 } 
 
+const saveNewPictureBanner = (newThing) => {
+  return axios.post('/api/picture/create/banner', newThing)
+    .then(response => {
+      return response.data})
+    .catch(err => err.response.data);
+} 
+
+
+const saveNewPictureProfile = (newThing) => {
+  return axios.post('/api/picture/create/profile', newThing)
+    .then(response => {
+      return response.data})
+    .catch(err => err.response.data);
+} 
+
 export {
   handleUpload,
-  saveNewPicture
+  saveNewPicture,
+  saveNewPictureBanner,
+  saveNewPictureProfile
 }

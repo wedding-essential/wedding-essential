@@ -13,7 +13,7 @@ export default class Banner extends Component {
     }
     return (
       <div style={style} >
-          <div><img src={this.props.wedding.owner.imgPath} style={{width:"100px"}} alt='couple profile picture'/></div>
+          <div><img src={this.props.user.imgPath} style={{width:"100px"}} alt='couple profile picture'/></div>
           <div>{this.props.wedding.date}</div>
       </div>
     )

@@ -34,11 +34,11 @@ export default class Home extends Component {
     else {
       return (
         <div>
-          <Banner wedding={this.state.wedding}/>
+          <Banner wedding={this.state.wedding} user={this.props.user}/>
           <Story story={this.state.wedding.story}/>
           <Timeline wedding={this.state.wedding}/>
           <Dresscode dresscode={this.state.wedding.dresscode}/>
-          <Contact contact={this.state.wedding.contact}/>
+          <Contact wedding={this.state.wedding}/>
         </div>
       )
     }
