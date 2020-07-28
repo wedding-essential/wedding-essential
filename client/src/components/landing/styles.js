@@ -4,13 +4,14 @@ import { gold } from "../../styles/colors";
 export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  height: 90vh;
+  height: 80vh;
   align-items: center;
   justify-content: center;
   margin: 4% 2%;
 
   img {
-    margin-bottom: 40px;
+    margin: 40px 0;
+    width: 250px;
   }
 
   button {
