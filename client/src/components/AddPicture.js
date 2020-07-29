@@ -80,14 +80,14 @@ class AddPicture extends Component {
           console.log("Error while adding the picture: ", err);
         });
     } else if (this.props.handler === "profile") {
-        saveNewPictureProfile(this.state)
+      saveNewPictureProfile(this.state)
         .then((res) => {
           console.log("added: ", res);
           // here you would redirect to some other page
         })
         .catch((err) => {
           console.log("Error while adding the picture: ", err);
-        }); 
+        });
     }
 
     //     saveNewPicture(this.state)
@@ -112,13 +112,9 @@ class AddPicture extends Component {
           >
             Save new Picture
           </button>
-          {this.state.pictures.length && (
-            <>
-              {this.state.pictures.map((pic) => {
-                return <img src={pic} />;
-              })}
-            </>
-          )}
+          {this.state.pictures.length ? this.state.pictures.map((pic) => {
+            return <img src={pic} />;
+          }) : null}
         </form>
       </div>
     );

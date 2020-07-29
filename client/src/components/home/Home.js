@@ -5,6 +5,7 @@ import Timeline from './Timeline'
 import Dresscode from './Dresscode'
 import Contact from './Contact'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 export default class Home extends Component {
@@ -34,6 +35,7 @@ export default class Home extends Component {
     if(!this.state.wedding){return <> </>}
     else {
       return (
+        <>
         <div>
           <Banner wedding={this.state.wedding} user={this.props.user}/>
           <Story story={this.state.wedding.story}/>
@@ -41,6 +43,10 @@ export default class Home extends Component {
           <Dresscode dresscode={this.state.wedding.dresscode}/>
           <Contact wedding={this.state.wedding}/>
         </div>
+        <div>
+          <Link to="/edithome">Edit Wedding</Link>
+        </div>
+        </>
       )
     }
   }
