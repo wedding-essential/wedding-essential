@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {logout} from "../../services/auth";
-import axios from 'axios'
+import axios from 'axios';
+import Navbar from "../navbar/Navbar";
 
 export default class Menu extends Component {
 
@@ -49,6 +50,7 @@ export default class Menu extends Component {
         <div><Link to='/guests'>Guest list</Link></div>
         <div><Link to='/profile'>Profile</Link></div>
         <div><Link to='/' onClick={() => this.handleLogout(this.props)}>Logout</Link></div>
+        <Navbar />
       </div>
     )
     }
