@@ -6,6 +6,7 @@ import Dresscode from './Dresscode'
 import Contact from './Contact'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Navbar from '../navbar/Navbar'
 
 
 export default class Home extends Component {
@@ -46,7 +47,9 @@ export default class Home extends Component {
         <div>
           <Link to="/edithome">Edit Wedding</Link>
         </div>
+        <Navbar/>
         </>
+        
       )
     }
   }
