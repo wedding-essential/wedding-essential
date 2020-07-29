@@ -18,11 +18,11 @@ router.post("/picture/create", (req, res) => {
     console.log(req.body)
     Picture.create(req.body).then(DBres => {
         console.log(DBres)
-        Wedding.findByIdAndUpdate(req.body.wedding, { $push: { gallery: DBres._id } }, { new: true }).then(wed => {
+        Wedding.findByIdAndUpdate(req.body.wedding, { $push: { gallery: DBres._id } }, { new: true }).populate("gallery").then(wed => {
             console.log(wed)
+            res.json(wed)
         })
     })
-    res.json("hello lightness my old friend")
 })
 
 router.post("/picture/create/banner", (req, res) => {

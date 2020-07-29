@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AddPicture from "../AddPicture";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export default class EditHome extends Component {
   state = {
@@ -14,7 +14,7 @@ export default class EditHome extends Component {
     eventTime: "",
     eventLocation: "",
     eventDescription: "",
-    events: ""
+    events: "",
   };
 
   componentDidMount() {
@@ -35,7 +35,7 @@ export default class EditHome extends Component {
           dressCategory: dresscode.category,
           contactName,
           contactEmail,
-          events
+          events,
         });
       })
       .catch((err) => console.log(err));
@@ -51,6 +51,8 @@ export default class EditHome extends Component {
   };
 
   handleSubmit = (event) => {
+    event.preventDefault();
+
     const {
       eventDescription,
       eventLocation,
@@ -61,7 +63,7 @@ export default class EditHome extends Component {
       dressCategory,
       contactName,
     } = this.state;
-    event.preventDefault();
+
     axios
       .put(`/api/wedding/${this.props.user.wedding}`, {
         story: this.state.story,
@@ -75,8 +77,20 @@ export default class EditHome extends Component {
         eventLocation,
         eventTime,
         eventName,
+        events: this.state.events,
       })
       .then((response) => {
+        console.log(response.data.events,"Marco is jealous")
+        const {name, time, location, description} = response.data.events
+        
+        console.log("handleSubmit response", response.data.events);
+        this.setState({
+          eventDescription: description,
+          eventLocation: location,
+          eventName: name,
+          eventTime: time,
+          events:response.data.events
+        });
         // this.props.history.push("/home");
       })
       .catch((err) => {
@@ -86,27 +100,28 @@ export default class EditHome extends Component {
 
   deleteEvent = (event) => {
     event.preventDefault();
-    console.log(event.target.id)
-    let filteredEvents=this.state.events.slice().filter(elem=>{
-     
-      if(elem._id==event.target.id){
-        return false
+    console.log(event.target.id);
+    let filteredEvents = this.state.events.slice().filter((elem) => {
+      if (elem._id == event.target.id) {
+        return false;
       }
-      return true
-    })
+      return true;
+    });
     this.setState({
-      events:filteredEvents
-    })
+      events: filteredEvents,
+    });
 
-    axios.put(`/api/wedding/deleteevent`, {events:filteredEvents})
-    .then(response => console.log(response))
-    .catch((err) => {
-      return err;
-    })
-  }
+    axios
+      .put(`/api/wedding/deleteevent`, { events: filteredEvents })
+      .then((response) => console.log(response))
+      .catch((err) => {
+        return err;
+      });
+  };
 
   render() {
     console.log("STAITE , ", this.state.events);
+    
     return (
       <>
         <h2>Banner image</h2>
@@ -131,6 +146,8 @@ export default class EditHome extends Component {
             id="date"
             name="date"
             type="date"
+            data-date=""
+            data-date-format=" DD MMMM YYYY"
             onChange={this.handleChange}
             defaultValue={this.state.date}
           ></input>
@@ -180,14 +197,18 @@ export default class EditHome extends Component {
         </form>
 
         <h2>Current Events:</h2>
-        {this.state.events.length !== 0 ?
-
-          this.state.events.map(event => {
-            return (<div key={event._id}>
-              <h2>{event.name}</h2>
-              <button id={event._id} onClick={this.deleteEvent}>Delete Event</button>
-            </div>)
-          }) : null}
+        {this.state.events
+          ? this.state.events.map((event) => {
+              return (
+                <div key={event._id}>
+                  <h2>{event.name}</h2>
+                  <button id={event._id} onClick={this.deleteEvent}>
+                    Delete Event
+                  </button>
+                </div>
+              );
+            })
+          : null}
 
         <form onSubmit={this.handleSubmit}>
           <h1>Add New Event</h1>

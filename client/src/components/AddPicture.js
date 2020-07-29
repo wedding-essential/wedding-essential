@@ -65,6 +65,7 @@ class AddPicture extends Component {
       saveNewPicture(this.state)
         .then((res) => {
           console.log("added: ", res);
+          this.props.setGallery(res.gallery)
           // here you would redirect to some other page
         })
         .catch((err) => {
