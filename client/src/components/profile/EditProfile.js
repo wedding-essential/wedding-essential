@@ -134,12 +134,6 @@ export default class Profile extends Component {
                   defaultValue={this.state.lastName}
                   placeholder="last name"
                 ></input>
-                <input
-                  type="text"
-                  name="food"
-                  onChange={this.handleChange}
-                  defaultValue={this.state.food}
-                ></input>
                 <select
                 id='food'
                 name='food'
@@ -154,22 +148,6 @@ export default class Profile extends Component {
               </form>
             </>
           )}
-
-
-{/* <select
-            id="dressCategory"
-            name="dressCategory"
-            onChange={this.handleChange}
-            value={this.state.dressCategory}
-          >
-            <option value="blacktie">Blacktie</option>
-            <option value="formal">Formal</option>
-            <option value="semi-formal">Semi-formal</option>
-            <option value="festive">Festive</option>
-            <option value="casual">Casual</option>
-            <option value="tropical">Tropical</option>
-            <option value="other">Other</option>
-          </select> */}
 
         </div>
       </>
