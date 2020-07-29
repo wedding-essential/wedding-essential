@@ -17,6 +17,7 @@ export default class Gallery extends Component {
     axios
       .get(`/api/wedding/${weddingId}`)
       .then(response => {
+        console.log(response.data)
         const {gallery} = response.data
         this.setState({
           wedding: response.data,
@@ -25,6 +26,13 @@ export default class Gallery extends Component {
       })
       .catch(err => console.log(err))
   }
+
+  setGallery = (newGallery) => {
+    console.log(newGallery)
+    this.setState({
+      gallery: newGallery,
+    });
+  };
 
   render() {
     
@@ -40,7 +48,7 @@ export default class Gallery extends Component {
         )
       })}
       <div>
-        <AddPicture user={this.props.user}/>
+        <AddPicture user={this.props.user} gallery={this.state.gallery} setGallery={this.setGallery}/>
       </div>
       </>
     )

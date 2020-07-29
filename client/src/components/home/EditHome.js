@@ -146,6 +146,8 @@ export default class EditHome extends Component {
             id="date"
             name="date"
             type="date"
+            data-date=""
+            data-date-format=" DD MMMM YYYY"
             onChange={this.handleChange}
             defaultValue={this.state.date}
           ></input>
