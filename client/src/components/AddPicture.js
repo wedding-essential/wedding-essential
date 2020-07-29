@@ -89,21 +89,15 @@ class AddPicture extends Component {
         .catch((err) => {
           console.log("Error while adding the picture: ", err);
         });
-    }
-
-    //     saveNewPicture(this.state)
-    //         .then(res => {
-    //             console.log('added: ', res);
-    //             // here you would redirect to some other page
-    //         })
-    //         .catch(err => {
-    //             console.log("Error while adding the picture: ", err);
-    //         });
+      }
   };
 
   render() {
     return (
       <div>
+        {this.state.pictures.length ? this.state.pictures.map((pic) => {
+            return <img src={pic} style={{height:'200px'}}/>;
+          }) : null}
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="file" onChange={(e) => this.handleFileUpload(e)} />
           <button
@@ -113,9 +107,7 @@ class AddPicture extends Component {
           >
             Save new Picture
           </button>
-          {this.state.pictures.length ? this.state.pictures.map((pic) => {
-            return <img src={pic} />;
-          }) : null}
+          
         </form>
       </div>
     );
