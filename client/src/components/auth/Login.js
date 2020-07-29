@@ -62,7 +62,7 @@ export default class Login extends Component {
           ></input>
           <div className="buttons">
             <Link to="/">
-              <button>Back</button>
+              <button type='button'>Back</button>
             </Link>
             <button type="submit" value="submit">
               Next
