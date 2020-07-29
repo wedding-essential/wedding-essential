@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../../models/User");
 const Wedding = require("../../models/Wedding");
-const {loginCheck} = require('../auth/middlewares');
-
+const { loginCheck } = require("../auth/middlewares");
+const bcrypt = require("bcrypt");
 
 router.get("/:id/users", loginCheck(), (req, res) => {
   Wedding.findById(req.params.id)
@@ -18,11 +18,34 @@ router.get("/:id/users", loginCheck(), (req, res) => {
 });
 
 router.put("/:id/user", loginCheck(), (req, res) => {
-  const { email, password, firstName, lastName, partnerFirstName, partnerLastName, food } = req.body;
-  User.findByIdAndUpdate(req.user._id, { email, password, firstName, lastName, partnerFirstName, partnerLastName, food }, {new :true})
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    partnerFirstName,
+    partnerLastName,
+    food,
+  } = req.body;
+  const salt = bcrypt.genSaltSync();
+  const hash = bcrypt.hashSync(password, salt);
+  User.findByIdAndUpdate(
+    req.user._id,
+    {
+      email,
+      password: hash,
+      firstName,
+      lastName,
+      partnerFirstName,
+      partnerLastName,
+      food,
+    },
+    { new: true }
+  )
     .then((user) => {
-      console.log(user)
-      res.json(user)})
+      console.log(user);
+      res.json(user);
+    })
     .catch((err) => res.status(500).json(err));
 });
 
