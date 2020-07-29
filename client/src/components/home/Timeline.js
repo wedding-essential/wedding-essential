@@ -4,7 +4,7 @@ export default class Timeline extends Component {
   render() {
     const eventList = this.props.wedding.events.map((event) => {
       return (
-        <div key={event.id}>
+        <div key={event._id}>
           <h2>{event.name}</h2>
           <p>{event.time}</p>
           <p>{event.location}</p>
@@ -12,8 +12,9 @@ export default class Timeline extends Component {
         </div>
       );
     });
+    
     return (
-      <div>
+      <>
         {this.props.wedding.events.length === 0 ? (
           <>
             {" "}
@@ -23,12 +24,11 @@ export default class Timeline extends Component {
             <p>Follow the smoke</p>{" "}
           </>
         ) : (
-          <>
-            <h2>{this.props.wedding.date}</h2>
-            {eventList}
-          </>
-        )}
-      </div>
+            <>
+              {eventList}
+            </>
+          )}
+      </>
     );
   }
 }

@@ -30,12 +30,10 @@ const weddingSchema = new Schema({
   },
   events: [
     {
-      // id: String,
       name: String,
       location: String,
       time: String,
       description: String,
-      
     },
   ],
   dresscode: {

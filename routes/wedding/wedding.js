@@ -5,6 +5,7 @@ const { loginCheck } = require("../auth/middlewares");
 const router = express.Router();
 
 router.get("/:id", loginCheck(), (req, res) => {
+  console.log("Hallo?")
   Wedding.findById(req.params.id)
     .populate("owner")
     .populate("guests")
@@ -52,7 +53,19 @@ router.put("/test/:id", async (req, res) => {
     res.json(false);
   }
 });
-
+router.put('/deleteevent', loginCheck(), async (req, res) => {
+  try {
+    console.log("HAPPENING??!!!")
+    const {events} = req.body
+    console.log(req.user.wedding,"WEDDING!!!!!!!!!!!!!!!!!!!!!!!!!!")
+     const eventList = await Wedding.findByIdAndUpdate(req.user.wedding, { events }, { new: true })
+     res.status(200).json(eventList);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+}
+)
 router.put("/:id", loginCheck(), async (req, res) => {
   try {
     const {
@@ -64,7 +77,7 @@ router.put("/:id", loginCheck(), async (req, res) => {
       eventLocation,
       eventDescription,
     } = req.body;
-    console.log("req.body", req.body);
+    // console.log("req.body", req.body);
     let wedding;
     const eventStuff = {
       eventName,
@@ -113,5 +126,7 @@ router.delete("/:id", loginCheck(), async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 module.exports = router;
