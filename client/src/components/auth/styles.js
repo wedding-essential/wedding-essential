@@ -4,10 +4,11 @@ import { gold, grey } from "../../styles/colors";
 export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  height: 80vh;
+  width:100vw;
+  height: 100vh;
   align-items: center;
   justify-content: center;
-  margin: 4% 2%;
+  margin: auto;
 
   h1 {
     font-size: 19px;
@@ -27,7 +28,7 @@ export const Container = styled.div`
   }
 
   img {
-    margin: 40px 0;
+    margin-bottom: 40px;
     width: 250px;
   }
 
@@ -59,10 +60,9 @@ export const Container = styled.div`
     background: ${gold};
     border: 1px solid ${gold};
     border-radius: 27px;
-    padding: 5px 5px;
+    padding: 10px 5px;
     margin: 10px 5px;
     width: 125px;
-    font-size: 13px;
     color: white;
   }
 `;
