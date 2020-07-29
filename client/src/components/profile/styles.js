@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { gold, yellow } from "../../styles/colors";
+import { gold, grey } from "../../styles/colors";
 
 export const Container = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const Container = styled.div`
       font-weight: 500;
       font-size: 14px;
       line-height: 36px;
-      color: ${gold}
+      color: ${gold};
     }
 
     p {
@@ -78,13 +78,43 @@ export const Container = styled.div`
     }
 
     button {
-    background: ${gold};
-    border: 1px solid ${gold};
-    border-radius: 27px;
-    padding: 10px 5px;
-    margin: 10px 5px;
-    width: 125px;
-    color: white;
-  }
+      background: ${gold};
+      border: 1px solid ${gold};
+      border-radius: 27px;
+      padding: 10px 5px;
+      margin: 10px 5px;
+      width: 125px;
+      color: white;
+    }
+
+    form {
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    input {
+      background-color: ${grey};
+      border: 1px solid ${gold};
+      border-radius: 3px;
+      padding: 10px 10px;
+      width: 90vw;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    select {
+      margin-top: 40px;
+    }
+
+    label {
+      margin-top: 20px;
+    }
+
+    .formButton {
+      margin-top: 60px;
+    }
   }
 `;
