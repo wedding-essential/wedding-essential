@@ -7,9 +7,8 @@ export default class Navbar extends Component {
     return (
       <Container>
         <Link to="/home">Home</Link>
-        <Link to="/posts">Posts</Link>
+        <Link to="/guests">Guests</Link>
         <Link to="/gallery">Gallery</Link>
-        <Link to="/gifts">Gifts</Link>
         <Link to="/menu">Menu</Link>
       </Container>
     );

@@ -4,7 +4,9 @@ import { logout } from "../../services/auth";
 import axios from "axios";
 import Navbar from "../navbar/Navbar";
 import { Container } from "./styles";
-import guestList from "../../images/guest-list-icon.svg";
+import guestListIcon from "../../images/guest-list-icon.svg";
+import settingsIcon from "../../images/settings-icon.svg";
+import logoutIcon from "../../images/logout-icon.svg";
 
 export default class Menu extends Component {
   state = {
@@ -58,13 +60,15 @@ export default class Menu extends Component {
             </div>
             <div className="menulinks">
               <div className="linkitems">
-                <img src={guestList} alt="Guest list icon" />
-                <Link to="/guests">Guest list</Link>
+              <img src={settingsIcon} alt="settings icon" />
+                <Link to="/profile">Profile</Link>
               </div>
-              <Link to="/profile">Profile</Link>
-              <Link to="/" onClick={() => this.handleLogout(this.props)}>
-                Logout
-              </Link>
+              <div className="linkitems">
+              <img src={logoutIcon} alt="logout icon" />
+                <Link to="/" onClick={() => this.handleLogout(this.props)}>
+                  Logout
+                </Link>
+              </div>
             </div>
           </main>
           <Navbar />
