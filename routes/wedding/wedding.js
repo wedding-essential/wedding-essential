@@ -10,6 +10,7 @@ router.get("/:id", loginCheck(), (req, res) => {
     .populate("owner")
     .populate("guests")
     .populate("contact")
+    .populate("gallery")
     .then((wedding) => {
       if (!wedding) {
         res.status(404).json(wedding);
@@ -109,7 +110,7 @@ router.put("/:id", loginCheck(), async (req, res) => {
         { new: true }
       );
     }
-    // console.log("WEDDIIIIING", wedding);
+    console.log("WEDDIIIIING", wedding);
     res.status(200).json(wedding);
   } catch (err) {
     console.log(err);
