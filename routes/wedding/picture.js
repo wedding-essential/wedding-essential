@@ -50,8 +50,9 @@ router.post("/picture/create/profile", (req, res) => {
 })
 
 router.delete("/picture/:id/delete", async (req, res) => {
-    await Wedding.findByIdAndUpdate(req.user.wedding._id, { $pull: { gallery: req.params.id } }, { new: true })
+    const wedding = await Wedding.findByIdAndUpdate(req.user.wedding._id, { $pull: { gallery: req.params.id } }, { new: true })
     await Picture.findByIdAndDelete(req.params.id)
-    res.json("hello darkness my old friend")
+    
+    res.json(wedding.gallery)
 })
 module.exports = router;
