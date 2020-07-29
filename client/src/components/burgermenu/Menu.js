@@ -4,6 +4,7 @@ import { logout } from "../../services/auth";
 import axios from "axios";
 import Navbar from "../navbar/Navbar";
 import { Container } from "./styles";
+import guestList from "../../images/guest-list-icon.svg";
 
 export default class Menu extends Component {
   state = {
@@ -51,12 +52,15 @@ export default class Menu extends Component {
                 {this.props.user.firstName} & {this.props.user.partnerFirstName}
               </h2>
             </div>
-            <div>
+            <div className="passcode">
               <h2>Your Wedding Passcode</h2>
               <p>{this.state.wedding.passcode}</p>
             </div>
-            <div>
-              <Link to="/guests">Guest list</Link>
+            <div className="menulinks">
+              <div className="linkitems">
+                <img src={guestList} alt="Guest list icon" />
+                <Link to="/guests">Guest list</Link>
+              </div>
               <Link to="/profile">Profile</Link>
               <Link to="/" onClick={() => this.handleLogout(this.props)}>
                 Logout
