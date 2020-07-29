@@ -4,7 +4,6 @@ import { logout } from "../../services/auth";
 import axios from "axios";
 import Navbar from "../navbar/Navbar";
 import { Container } from "./styles";
-import guestListIcon from "../../images/guest-list-icon.svg";
 import settingsIcon from "../../images/settings-icon.svg";
 import logoutIcon from "../../images/logout-icon.svg";
 
