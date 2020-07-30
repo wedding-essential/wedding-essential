@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AddPicture from "../AddPicture";
+import { Link } from "react-router-dom";
 
 export default class EditHome extends Component {
   state = {
@@ -13,6 +14,7 @@ export default class EditHome extends Component {
     eventTime: "",
     eventLocation: "",
     eventDescription: "",
+    events: "",
   };
 
   componentDidMount() {
@@ -24,7 +26,7 @@ export default class EditHome extends Component {
     axios
       .get(`/api/wedding/${weddingId}`)
       .then((response) => {
-        const { story, date, dresscode } = response.data;
+        const { story, date, dresscode, events } = response.data;
         const contactName = response.data.contact.name;
         const contactEmail = response.data.contact.email;
         this.setState({
@@ -33,6 +35,7 @@ export default class EditHome extends Component {
           dressCategory: dresscode.category,
           contactName,
           contactEmail,
+          events,
         });
       })
       .catch((err) => console.log(err));
@@ -48,6 +51,8 @@ export default class EditHome extends Component {
   };
 
   handleSubmit = (event) => {
+    event.preventDefault();
+
     const {
       eventDescription,
       eventLocation,
@@ -58,7 +63,7 @@ export default class EditHome extends Component {
       dressCategory,
       contactName,
     } = this.state;
-    event.preventDefault();
+
     axios
       .put(`/api/wedding/${this.props.user.wedding}`, {
         story: this.state.story,
@@ -72,17 +77,51 @@ export default class EditHome extends Component {
         eventLocation,
         eventTime,
         eventName,
+        events: this.state.events,
       })
       .then((response) => {
-        this.props.history.push("/home");
+        console.log(response.data.events,"Marco is jealous")
+        const {name, time, location, description} = response.data.events
+        
+        console.log("handleSubmit response", response.data.events);
+        this.setState({
+          eventDescription: description,
+          eventLocation: location,
+          eventName: name,
+          eventTime: time,
+          events:response.data.events
+        });
+        // this.props.history.push("/home");
       })
       .catch((err) => {
         return err;
       });
   };
 
+  deleteEvent = (event) => {
+    event.preventDefault();
+    console.log(event.target.id);
+    let filteredEvents = this.state.events.slice().filter((elem) => {
+      if (elem._id == event.target.id) {
+        return false;
+      }
+      return true;
+    });
+    this.setState({
+      events: filteredEvents,
+    });
+
+    axios
+      .put(`/api/wedding/deleteevent`, { events: filteredEvents })
+      .then((response) => console.log(response))
+      .catch((err) => {
+        return err;
+      });
+  };
+
   render() {
-    console.log("STAITE , ", this.state);
+    console.log("STAITE , ", this.state.events);
+    
     return (
       <>
         <h2>Banner image</h2>
@@ -107,6 +146,8 @@ export default class EditHome extends Component {
             id="date"
             name="date"
             type="date"
+            data-date=""
+            data-date-format=" DD MMMM YYYY"
             onChange={this.handleChange}
             defaultValue={this.state.date}
           ></input>
@@ -155,8 +196,22 @@ export default class EditHome extends Component {
           <button type="submit">Save</button>
         </form>
 
+        <h2>Current Events:</h2>
+        {this.state.events
+          ? this.state.events.map((event) => {
+              return (
+                <div key={event._id}>
+                  <h2>{event.name}</h2>
+                  <button id={event._id} onClick={this.deleteEvent}>
+                    Delete Event
+                  </button>
+                </div>
+              );
+            })
+          : null}
+
         <form onSubmit={this.handleSubmit}>
-          <h1>Events</h1>
+          <h1>Add New Event</h1>
           <label htmlFor="eventName">
             <h2>Name</h2>
           </label>
@@ -200,6 +255,7 @@ export default class EditHome extends Component {
 
           <button type="submit">Add an Event</button>
         </form>
+        <Link to="home">Back to Wedding</Link>
       </>
     );
   }

@@ -50,6 +50,7 @@ export default class Login extends Component {
             name="email"
             value={this.state.email}
             onChange={this.handleChange}
+            required
           ></input>
           <label>Password</label>
           <input
@@ -57,10 +58,11 @@ export default class Login extends Component {
             name="password"
             value={this.state.password}
             onChange={this.handleChange}
+            required
           ></input>
           <div className="buttons">
             <Link to="/">
-              <button>Back</button>
+              <button type='button'>Back</button>
             </Link>
             <button type="submit" value="submit">
               Next

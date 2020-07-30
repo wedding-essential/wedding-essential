@@ -65,6 +65,7 @@ class AddPicture extends Component {
       saveNewPicture(this.state)
         .then((res) => {
           console.log("added: ", res);
+          this.props.setGallery(res.gallery)
           // here you would redirect to some other page
         })
         .catch((err) => {
@@ -80,29 +81,23 @@ class AddPicture extends Component {
           console.log("Error while adding the picture: ", err);
         });
     } else if (this.props.handler === "profile") {
-        saveNewPictureProfile(this.state)
+      saveNewPictureProfile(this.state)
         .then((res) => {
           console.log("added: ", res);
           // here you would redirect to some other page
         })
         .catch((err) => {
           console.log("Error while adding the picture: ", err);
-        }); 
-    }
-
-    //     saveNewPicture(this.state)
-    //         .then(res => {
-    //             console.log('added: ', res);
-    //             // here you would redirect to some other page
-    //         })
-    //         .catch(err => {
-    //             console.log("Error while adding the picture: ", err);
-    //         });
+        });
+      }
   };
 
   render() {
     return (
       <div>
+        {this.state.pictures.length ? this.state.pictures.map((pic) => {
+            return <img src={pic} style={{height:'200px'}}/>;
+          }) : null}
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="file" onChange={(e) => this.handleFileUpload(e)} />
           <button
@@ -112,13 +107,7 @@ class AddPicture extends Component {
           >
             Save new Picture
           </button>
-          {this.state.pictures.length && (
-            <>
-              {this.state.pictures.map((pic) => {
-                return <img src={pic} />;
-              })}
-            </>
-          )}
+          
         </form>
       </div>
     );

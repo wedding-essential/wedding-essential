@@ -8,13 +8,11 @@ import Home from "./components/home/Home";
 import EditHome from "./components/home/EditHome";
 import Login from "./components/auth/Login";
 import Gallery from "./components/gallery/Gallery";
-import Navbar from "./components/navbar/Navbar";
 import Menu from "./components/burgermenu/Menu";
 import Guests from "./components/guests/Guests";
 import Gifts from "./components/gifts/Gifts";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
-import AddPicture from "./components/AddPicture";
 import EditProfile from "./components/profile/EditProfile";
 import GlobalStyle from "./styles/global";
 
@@ -32,7 +30,13 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Route exact path="/" component={Landing} />
+        <Route 
+        exact 
+        path="/" 
+        render={(props) => {
+          if (this.state.user) return <Redirect to="/home" /> ;
+          else return <Landing/>;
+        }} />
         <Route
           exact
           path="/signup/couple"
@@ -137,8 +141,6 @@ export default class App extends Component {
             else return <Redirect to="/" />;
           }}
         />
-
-        {this.state.user && <Navbar />}
         <GlobalStyle />
       </>
     );

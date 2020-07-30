@@ -1,56 +1,78 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import {logout} from "../../services/auth";
-import axios from 'axios'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { logout } from "../../services/auth";
+import axios from "axios";
+import Navbar from "../navbar/Navbar";
+import { Container } from "./styles";
+import settingsIcon from "../../images/settings-icon.svg";
+import logoutIcon from "../../images/logout-icon.svg";
 
 export default class Menu extends Component {
-
   state = {
-    wedding: null
-  }
+    wedding: null,
+  };
 
   handleLogout = () => {
     logout().then(() => {
       this.props.setUser(null);
     });
-  }
+  };
 
   componentDidMount() {
-    this.getData()
+    this.getData();
   }
 
   getData = () => {
     const weddingId = this.props.user.wedding;
     axios
       .get(`/api/wedding/${weddingId}`)
-      .then(response => {
+      .then((response) => {
         this.setState({
-          wedding: response.data
-        })
+          wedding: response.data,
+        });
       })
-      .catch(err => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   render() {
-   
-    if(!this.state.wedding){return <> </>}
-    else {
-    return (
-      <div>
-        <h1>Menu</h1>
-        <div>
-          {/* <img src={logo} alt='couple profile picture'/> */}
-    <h2>{this.props.user.firstName} & {this.props.user.partnerFirstName}</h2>
-        </div>
-        <div>
-          <h1>Your wedding passcode</h1>
-          <p>{this.state.wedding.passcode}</p>
-        </div>
-        <div><Link to='/guests'>Guest list</Link></div>
-        <div><Link to='/profile'>Profile</Link></div>
-        <div><Link to='/' onClick={() => this.handleLogout(this.props)}>Logout</Link></div>
-      </div>
-    )
+    if (!this.state.wedding) {
+      return <> </>;
+    } else {
+      return (
+        <Container>
+          <main>
+            <div className="topbar">
+              <h1>Menu</h1>
+            </div>
+            <div className="userHeader">
+              <img
+                src={this.props.user.imgPath}
+                alt={this.props.user.imgName}
+              />
+              <h2>
+                {this.props.user.firstName} & {this.props.user.partnerFirstName}
+              </h2>
+            </div>
+            <div className="passcode">
+              <h2>Your Wedding Passcode</h2>
+              <p>{this.state.wedding.passcode}</p>
+            </div>
+            <div className="menulinks">
+              <div className="linkitems">
+              <img src={settingsIcon} alt="settings icon" />
+                <Link to="/profile">Profile</Link>
+              </div>
+              <div className="linkitems">
+              <img src={logoutIcon} alt="logout icon" />
+                <Link to="/" onClick={() => this.handleLogout(this.props)}>
+                  Logout
+                </Link>
+              </div>
+            </div>
+          </main>
+          <Navbar />
+        </Container>
+      );
     }
   }
 }

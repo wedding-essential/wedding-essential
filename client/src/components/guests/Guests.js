@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 // import GuestList from './GuestList';
 import axios from "axios";
+import Navbar from '../navbar/Navbar'
+
 
 export default class Guests extends Component {
   state = {
@@ -45,6 +47,7 @@ export default class Guests extends Component {
               );
             })}
           </div>
+          <Navbar/>
         </>
       );
     }

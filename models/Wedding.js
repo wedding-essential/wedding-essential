@@ -21,7 +21,7 @@ const weddingSchema = new Schema({
   bannerImgPublicId: String,
   date: {
     type: String,
-    default: Date.now() + 365 * 24 * 60 * 60 * 1000,
+    default: "My Wedding date",
   },
   story: {
     type: String,
@@ -30,12 +30,10 @@ const weddingSchema = new Schema({
   },
   events: [
     {
-      // id: String,
       name: String,
       location: String,
       time: String,
       description: String,
-      
     },
   ],
   dresscode: {

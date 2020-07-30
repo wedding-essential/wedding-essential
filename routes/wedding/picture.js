@@ -18,11 +18,11 @@ router.post("/picture/create", (req, res) => {
     console.log(req.body)
     Picture.create(req.body).then(DBres => {
         console.log(DBres)
-        Wedding.findByIdAndUpdate(req.body.wedding, { $push: { gallery: DBres._id } }, { new: true }).then(wed => {
+        Wedding.findByIdAndUpdate(req.body.wedding, { $push: { gallery: DBres._id } }, { new: true }).populate("gallery").then(wed => {
             console.log(wed)
+            res.json(wed)
         })
     })
-    res.json("hello lightness my old friend")
 })
 
 router.post("/picture/create/banner", (req, res) => {
@@ -50,8 +50,9 @@ router.post("/picture/create/profile", (req, res) => {
 })
 
 router.delete("/picture/:id/delete", async (req, res) => {
-    await Wedding.findByIdAndUpdate(req.user.wedding._id, { $pull: { gallery: req.params.id } }, { new: true })
+    const wedding = await Wedding.findByIdAndUpdate(req.user.wedding._id, { $pull: { gallery: req.params.id } }, { new: true })
     await Picture.findByIdAndDelete(req.params.id)
-    res.json("hello darkness my old friend")
+    
+    res.json(wedding.gallery)
 })
 module.exports = router;
