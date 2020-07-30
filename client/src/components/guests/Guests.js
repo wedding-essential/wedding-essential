@@ -29,7 +29,6 @@ export default class Guests extends Component {
     if (!this.state.wedding) {
       return <> </>;
     } else {
-      console.log(this.state.wedding.guests);
       return (
         <>
           <div>
@@ -38,7 +37,7 @@ export default class Guests extends Component {
           <div>
             {this.state.wedding.guests.map((guest) => {
               return (
-                <div>
+                <div key={guest._id}>
                   <h2>{guest.firstName} {guest.lastName}</h2>
                   <p>{guest.food}</p>
                 </div>
