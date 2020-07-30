@@ -25,8 +25,9 @@ export default class Banner extends Component {
     };
     console.log(this.props.wedding.date);
     
-
+    
     return (
+      
       <div style={style}>
         <div>
           <img
@@ -35,7 +36,7 @@ export default class Banner extends Component {
             alt="couple profile picture"
           />
         </div>
-        <div>{this.wedDate(this.props.wedding.date)}</div>
+        {this.props.wedding.date === "My Wedding date" ? (<div>{this.props.wedding.date}</div>) : (<div>{this.wedDate(this.props.wedding.date)}</div>)}
       </div>
     );
   }
