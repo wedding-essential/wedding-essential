@@ -63,12 +63,13 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 */
+app.use(express.static(path.join(__dirname, "/client/build")));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-app.use('/api/auth', require('./routes/auth/auth.js'))
+app.use('/api/auth', require('./routes/auth/auth.js'));
 
 // app.use('/api/wedding', require('./routes/wedding/gift.js'))
 // app.use('/api/wedding', require('./routes/wedding/post.js'))
@@ -78,5 +79,10 @@ app.use('/api/wedding', require('./routes/wedding/wedding.js'))
 //Cloudinary
 app.use('/api', require('./routes/file-upload-routes'));
 app.use('/api', require('./routes/wedding/picture'));
+
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/client/build/index.html");
+});
 
 module.exports = app;
