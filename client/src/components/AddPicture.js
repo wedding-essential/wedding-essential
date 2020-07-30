@@ -94,7 +94,7 @@ class AddPicture extends Component {
 
   render() {
     return (
-      <div>
+      <>
         {/* {this.state.pictures ? (<img src={this.state.pictures} style={{height:'200px'}}/>) : null} */}
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="file" onChange={(e) => this.handleFileUpload(e)} />
@@ -107,7 +107,7 @@ class AddPicture extends Component {
           </button>
           
         </form>
-      </div>
+      </>
     );
   }
 }
