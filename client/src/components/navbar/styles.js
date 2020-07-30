@@ -11,6 +11,7 @@ export const Container = styled.div`
     flex-flow: row nowrap;
     width: 100%;
     max-width: 768px;
+    margin: 0 auto;
     justify-content: space-evenly;
     align-items: center;
     border-top: 2px solid ${lightgrey};
