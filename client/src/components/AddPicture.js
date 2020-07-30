@@ -95,7 +95,7 @@ class AddPicture extends Component {
   render() {
     return (
       <div>
-        {this.state.pictures ? (<img src={this.state.pictures} style={{height:'200px'}}/>) : null}
+        {/* {this.state.pictures ? (<img src={this.state.pictures} style={{height:'200px'}}/>) : null} */}
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="file" onChange={(e) => this.handleFileUpload(e)} />
           <button
@@ -103,7 +103,7 @@ class AddPicture extends Component {
             onClick={(e) => this.handleSubmit(e)}
             disabled={this.state.uploadOn}
           >
-            Save new Picture
+            Save
           </button>
           
         </form>
