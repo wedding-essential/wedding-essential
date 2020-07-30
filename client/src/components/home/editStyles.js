@@ -5,15 +5,14 @@ export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  margin: auto;
+  justify-content: center;
   height: 100%;
 
   main {
     display: flex;
     flex-flow: column nowrap;
-    flex: 1;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
 
     .topbar-wrapper {
@@ -35,14 +34,9 @@ export const Container = styled.div`
     }
 
     .content {
-      margin: 70px 0;
-    }
-
-    img {
-      width: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-top: 10px;
+      display: flex;
+      flex-flow: column nowrap;
+      margin: 70px 40px;
     }
 
     h1 {
@@ -56,77 +50,74 @@ export const Container = styled.div`
       font-weight: 500;
       font-size: 24px;
       line-height: 36px;
-      color: white;
+      color: ${gold};
     }
 
     h3 {
       font-weight: 500;
-      font-size: 14px;
-      line-height: 36px;
-      color: ${gold};
-    }
-
-    p {
-      font-weight: 500;
       font-size: 16px;
-      line-height: 36px;
+      line-height: 24px;
+      color: black;
     }
 
-    .profile-container {
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .username {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: ${gold};
+    img {
       width: 100%;
       max-width: 768px;
-      height: 40px;
+    }
+
+    .image-wrapper {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
     }
 
     button {
       background: ${gold};
       border: 1px solid ${gold};
       border-radius: 27px;
-      padding: 10px 5px;
-      margin: 10px 5px;
-      width: 125px;
+      padding: 8px 4px;
+      margin: 10px auto;
+      width: 100px;
       color: white;
     }
 
-    form {
-      height: 100%;
+    .popotoEvents {
       display: flex;
       flex-flow: column nowrap;
-      align-items: center;
-      margin-top: 50px;
+
+    }
+
+    .popotoButtons {
+      align-self: center;
+      width: 70px;
+    }
+
+    .form {
+      display: flex;
+      flex-flow: column nowrap;
     }
 
     input {
-      background-color: ${grey};
+      background-color: white;
       border: 1px solid ${gold};
       border-radius: 3px;
-      padding: 10px 10px;
-      width: 90vw;
-      max-width: 700px;
-      text-align: center;
+      padding: 10px 5px;
     }
 
-    select {
-      margin-top: 40px;
+    textarea {
+      background-color: white;
+      border: 1px solid ${gold};
+      border-radius: 3px;
+      padding: 20px 5px;
     }
 
     label {
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
-    .formButton {
-      margin-top: 60px;
+    .editlink {
+      align-self: center;
     }
+
   }
 `;

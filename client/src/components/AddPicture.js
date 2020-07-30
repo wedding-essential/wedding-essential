@@ -44,7 +44,7 @@ class AddPicture extends Component {
           imageUrl: response.secure_url,
           public_id: response.public_id,
           uploadOn: false,
-          pictures: [...this.state.pictures, response.secure_url],
+          pictures: response.secure_url,
         });
       })
       .catch((err) => {
@@ -94,10 +94,8 @@ class AddPicture extends Component {
 
   render() {
     return (
-      <div>
-        {this.state.pictures.length ? this.state.pictures.map((pic) => {
-            return <img src={pic} style={{height:'200px'}}/>;
-          }) : null}
+      <>
+        {/* {this.state.pictures ? (<img src={this.state.pictures} style={{height:'200px'}}/>) : null} */}
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type="file" onChange={(e) => this.handleFileUpload(e)} />
           <button
@@ -105,11 +103,11 @@ class AddPicture extends Component {
             onClick={(e) => this.handleSubmit(e)}
             disabled={this.state.uploadOn}
           >
-            Save new Picture
+            Save
           </button>
           
         </form>
-      </div>
+      </>
     );
   }
 }

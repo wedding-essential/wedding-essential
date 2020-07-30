@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-// import GuestList from './GuestList';
 import axios from "axios";
-import Navbar from '../navbar/Navbar'
-
+import Navbar from "../navbar/Navbar";
+import { Container } from "./styles";
 
 export default class Guests extends Component {
   state = {
@@ -29,26 +28,29 @@ export default class Guests extends Component {
     if (!this.state.wedding) {
       return <> </>;
     } else {
-      console.log(this.state.wedding.guests);
       return (
-        <>
-          <div>
-            <h2>Guests</h2>
-          </div>
-          <div>
-            {this.state.wedding.guests.map((guest) => {
-              return (
-                <div>
-                  <h2>{guest.firstName}</h2>
-                  <p>{guest.food}</p>
-                  <button id={guest._id}>Edit</button>
-                  <button id={guest._id}>Delete</button>
-                </div>
-              );
-            })}
-          </div>
-          <Navbar/>
-        </>
+        <Container>
+          <main>
+            <div className="topbar-wrapper">
+              <div className="topbar">
+                <h1>Guests</h1>
+              </div>
+            </div>
+            <div className="content">
+              {this.state.wedding.guests.map((guest) => {
+                return (
+                  <div key={guest._id}>
+                    <h2>
+                      {guest.firstName} {guest.lastName}
+                    </h2>
+                    <p>{guest.food}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </main>
+          <Navbar />
+        </Container>
       );
     }
   }

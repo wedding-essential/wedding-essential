@@ -50,8 +50,8 @@ router.post("/picture/create/profile", (req, res) => {
 })
 
 router.delete("/picture/:id/delete", async (req, res) => {
-    const wedding = await Wedding.findByIdAndUpdate(req.user.wedding._id, { $pull: { gallery: req.params.id } }, { new: true })
-    await Picture.findByIdAndDelete(req.params.id)
+    const wedding = await Wedding.findByIdAndUpdate(req.user.wedding._id, { $pull: { gallery: req.params.id } }, { new: true }).populate("gallery")
+    await Picture.findByIdAndDelete(req.params.id).pu
     
     res.json(wedding.gallery)
 })

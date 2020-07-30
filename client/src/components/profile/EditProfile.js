@@ -48,113 +48,113 @@ export default class Profile extends Component {
     return (
       <Container>
         <main>
-          <div className="topbar">
-            <h1>Profile</h1>
+          <div className="topbar-wrapper">
+            <div className="topbar">
+              <h1>Profile</h1>
+            </div>
           </div>
-        
-            {this.props.user.role === "couple" && (
-              <>
-                <form onSubmit={this.handleSubmit}>
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="text"
-                    name="email"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.email}
-                  ></input>
-                  <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.password}
-                  ></input>
-                  <label htmlFor="firstName">1st soul mate</label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.firstName}
-                    placeholder="first name"
-                  ></input>
-                  <input
-                    type="text"
-                    name="lastName"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.lastName}
-                    placeholder="last name"
-                  ></input>
-                  <label htmlFor="partnerFirstName">2nd soul mate</label>
-                  <input
-                    type="text"
-                    name="partnerFirstName"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.partnerFirstName}
-                    placeholder="First name"
-                  ></input>
-                  <input
-                    type="text"
-                    name="partnerLastName"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.partnerLastName}
-                    placeholder="Last name"
-                  ></input>
-                  <button className="formButton" type="submit">
-                    Save changes
-                  </button>
-                </form>
-              </>
-            )}
 
-            {this.props.user.role === "guest" && (
-              <>
-                <form onSubmit={this.handleSubmit}>
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="text"
-                    name="email"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.email}
-                  ></input>
-                  <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.password}
-                  ></input>
-                  <label htmlFor="firstName">1st soul mate</label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.firstName}
-                    placeholder="first name"
-                  ></input>
-                  <input
-                    type="text"
-                    name="lastName"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.lastName}
-                    placeholder="last name"
-                  ></input>
-                  <select
-                    id="food"
-                    name="food"
-                    onChange={this.handleChange}
-                    value={this.state.food}
-                  >
-                    <option value="omnivore">Omnivore</option>
-                    <option value="vegetarian">Vegetarian</option>
-                    <option value="vegan">Vegan</option>
-                  </select>
-                  <button className="formButton" type="submit">
-                    Save changes
-                  </button>
-                </form>
-              </>
-            )}
-          
+          {this.props.user.role === "couple" ? (
+            <>
+              <form onSubmit={this.handleSubmit}>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.email}
+                ></input>
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.password}
+                ></input>
+                <label htmlFor="firstName">1st soul mate</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.firstName}
+                  placeholder="first name"
+                ></input>
+                <input
+                  type="text"
+                  name="lastName"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.lastName}
+                  placeholder="last name"
+                ></input>
+                <label htmlFor="partnerFirstName">2nd soul mate</label>
+                <input
+                  type="text"
+                  name="partnerFirstName"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.partnerFirstName}
+                  placeholder="First name"
+                ></input>
+                <input
+                  type="text"
+                  name="partnerLastName"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.partnerLastName}
+                  placeholder="Last name"
+                ></input>
+                <button className="formButton" type="submit">
+                  Save changes
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <form onSubmit={this.handleSubmit}>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.email}
+                ></input>
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.password}
+                ></input>
+                <label htmlFor="firstName">Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.firstName}
+                  placeholder="first name"
+                ></input>
+                <input
+                  type="text"
+                  name="lastName"
+                  onChange={this.handleChange}
+                  defaultValue={this.state.lastName}
+                  placeholder="last name"
+                ></input>
+                <label htmlFor="food">Food preference</label>
+                <select
+                  id="food"
+                  name="food"
+                  onChange={this.handleChange}
+                  value={this.state.food}
+                >
+                  <option value="omnivore">Omnivore</option>
+                  <option value="vegetarian">Vegetarian</option>
+                  <option value="vegan">Vegan</option>
+                </select>
+                <button className="formButton" type="submit">
+                  Save changes
+                </button>
+              </form>
+            </>
+          )}
         </main>
         <Navbar />
       </Container>
