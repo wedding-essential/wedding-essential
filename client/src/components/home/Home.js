@@ -7,6 +7,8 @@ import Contact from "./Contact";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
+import { Container } from "./styles";
+
 
 export default class Home extends Component {
   state = {
@@ -30,11 +32,12 @@ export default class Home extends Component {
   };
 
   render() {
-    console.log(this.state);
+
     if (!this.state.wedding) {
       return <> </>;
     } else {
       return (
+
         <>
           <div>
             <Banner wedding={this.state.wedding} user={this.props.user} />
@@ -42,6 +45,7 @@ export default class Home extends Component {
             <Timeline wedding={this.state.wedding} />
             <Dresscode dresscode={this.state.wedding.dresscode} />
             <Contact wedding={this.state.wedding} />
+
           </div>
           {this.props.user.role === "couple" ? (
             <div>
@@ -51,6 +55,7 @@ export default class Home extends Component {
 
           <Navbar />
         </>
+
       );
     }
   }
