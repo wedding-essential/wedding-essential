@@ -52,7 +52,7 @@ export default class Profile extends Component {
             <h1>Profile</h1>
           </div>
         
-            {this.props.user.role === "couple" && (
+            {this.props.user.role === "couple" ? (
               <>
                 <form onSubmit={this.handleSubmit}>
                   <label htmlFor="email">Email</label>
@@ -104,9 +104,8 @@ export default class Profile extends Component {
                   </button>
                 </form>
               </>
-            )}
-
-            {this.props.user.role === "guest" && (
+            ) : 
+            (
               <>
                 <form onSubmit={this.handleSubmit}>
                   <label htmlFor="email">Email</label>
@@ -123,7 +122,7 @@ export default class Profile extends Component {
                     onChange={this.handleChange}
                     defaultValue={this.state.password}
                   ></input>
-                  <label htmlFor="firstName">1st soul mate</label>
+                  <label htmlFor="firstName">Name</label>
                   <input
                     type="text"
                     name="firstName"
@@ -138,6 +137,7 @@ export default class Profile extends Component {
                     defaultValue={this.state.lastName}
                     placeholder="last name"
                   ></input>
+                  <label htmlFor="food">Food preference</label>
                   <select
                     id="food"
                     name="food"
@@ -153,7 +153,9 @@ export default class Profile extends Component {
                   </button>
                 </form>
               </>
-            )}
+            )
+            
+            }
           
         </main>
         <Navbar />

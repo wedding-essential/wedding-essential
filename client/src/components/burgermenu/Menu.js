@@ -53,7 +53,9 @@ export default class Menu extends Component {
                 {this.props.user.firstName} & {this.props.user.partnerFirstName}
               </h2>
             </div>
-            <div className="passcode">
+            {this.props.user.role === 'couple' ? (
+              <>
+              <div className="passcode">
               <h2>Your Wedding Passcode</h2>
               <p>{this.state.wedding.passcode}</p>
             </div>
@@ -69,6 +71,24 @@ export default class Menu extends Component {
                 </Link>
               </div>
             </div>
+              </>
+            ): (
+              <>
+              <div className="menulinks">
+                <div className="linkitems">
+                <img src={settingsIcon} alt="settings icon" />
+                  <Link to="/profile">Profile</Link>
+                </div>
+                <div className="linkitems">
+                <img src={logoutIcon} alt="logout icon" />
+                  <Link to="/" onClick={() => this.handleLogout(this.props)}>
+                    Logout
+                  </Link>
+                </div>
+              </div>
+              </>
+            )}
+            
           </main>
           <Navbar />
         </Container>
