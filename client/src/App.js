@@ -30,7 +30,13 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Route exact path="/" component={Landing} />
+        <Route 
+        exact 
+        path="/" 
+        render={(props) => {
+          if (this.state.user) return <Redirect to="/home" /> ;
+          else return <Landing/>;
+        }} />
         <Route
           exact
           path="/signup/couple"
