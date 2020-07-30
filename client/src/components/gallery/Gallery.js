@@ -38,7 +38,6 @@ export default class Gallery extends Component {
     axios
       .delete(`/api/picture/${pictID}/delete`)
       .then((response) => {
-
         this.setState({
           gallery: response.data,
         });
@@ -50,37 +49,41 @@ export default class Gallery extends Component {
 
   render() {
     return (
-
-      <>
-        {this.state.gallery.map((photo) => {
-          console.log(photo);
-          return (
-            <>
-              <div>
-                <img src={photo.imageUrl} style={{ width: "200px" }} />
-              </div>
-              {this.props.user.role === "couple" ? (
-                <button onClick={() => this.deletePicture(photo._id)}>
-                  Delete
-                </button>
-              ) : null}
-            </>
-          );
-        })}
-
-        {this.props.user.role === "couple" ? (
-
-          <div>
-            <AddPicture
-              user={this.props.user}
-              gallery={this.state.gallery}
-              setGallery={this.setGallery}
-            />
+      <Container>
+        <main>
+          <div className="topbar-wrapper">
+            <div className="topbar">
+              <h1>Gallery</h1>
+            </div>
           </div>
-
-        ) : null}
-      </>
-
+          <div className="content">
+            {this.state.gallery.map((photo) => {
+              return (
+                
+                  <div className="image-wrapper" key={photo._id}>
+                    <img src={photo.imageUrl} />
+                  
+                  {this.props.user.role === "couple" ? (
+                    <button onClick={() => this.deletePicture(photo._id)}>
+                      Delete
+                    </button>
+                  ) : null}</div>
+                
+              );
+            })}
+            {this.props.user.role === "couple" ? (
+              <div>
+                <AddPicture
+                  user={this.props.user}
+                  gallery={this.state.gallery}
+                  setGallery={this.setGallery}
+                />
+              </div>
+            ) : null}
+          </div>
+        </main>
+        <Navbar />
+      </Container>
     );
   }
 }

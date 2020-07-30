@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 import { Container } from "./styles";
 
-
 export default class Home extends Component {
   state = {
     wedding: null,
@@ -32,30 +31,24 @@ export default class Home extends Component {
   };
 
   render() {
-
     if (!this.state.wedding) {
       return <> </>;
     } else {
       return (
-
-        <>
-          <div>
+        <Container img={this.state.wedding.bannerImgPath}>
+          <main>
             <Banner wedding={this.state.wedding} user={this.props.user} />
             <Story story={this.state.wedding.story} />
             <Timeline wedding={this.state.wedding} />
             <Dresscode dresscode={this.state.wedding.dresscode} />
             <Contact wedding={this.state.wedding} />
 
-          </div>
-          {this.props.user.role === "couple" ? (
-            <div>
-              <Link to="/edithome">Edit Wedding</Link>
-            </div>
-          ) : null}
-
+            {this.props.user.role === "couple" ? (
+              <Link className="editlink" to="/edithome"><button>Edit Wedding</button></Link>
+            ) : null}
+          </main>
           <Navbar />
-        </>
-
+        </Container>
       );
     }
   }

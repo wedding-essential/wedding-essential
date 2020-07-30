@@ -32,59 +32,67 @@ export default class Profile extends Component {
       return (
         <Container>
           <main>
-            <div className="topbar">
-              <h1>Menu</h1>
+            <div className="topbar-wrapper">
+              <div className="topbar">
+                <h1>Menu</h1>
+              </div>
             </div>
-            <div className="username">
-            {this.props.user.role === "couple" ? (<h2>
-                {this.props.user.firstName} & {this.props.user.partnerFirstName}
-              </h2>) : <h2>{this.props.user.firstName}</h2>}
+            <div className="content">
+              <div className="username">
+                {this.props.user.role === "couple" ? (
+                  <h2>
+                    {this.props.user.firstName} &{" "}
+                    {this.props.user.partnerFirstName}
+                  </h2>
+                ) : (
+                  <h2>{this.props.user.firstName}</h2>
+                )}
+              </div>
+
+              <img src={this.props.user.imgPath} style={{ height: "200px" }} />
+
               
-            </div>
+                {this.props.user.role === "couple" && (
+                  <div className="profile-container">
+                    <h3>Email</h3>
+                    <p>{this.props.user.email}</p>
+                    <h3>Password</h3>
+                    <p>*********</p>
 
-            <img src={this.props.user.imgPath} style={{ height: "200px" }} />
+                    <h3>1st soul mate</h3>
+                    <p>
+                      {this.props.user.firstName} {this.props.user.lastName}
+                    </p>
+                    <h3>2nd soul mate</h3>
+                    <p>
+                      {this.props.user.partnerFirstName}{" "}
+                      {this.props.user.partnerLastName}
+                    </p>
 
-            <div className="profile-container">
-              {this.props.user.role === "couple" && (
-                <>
-                  <h3>Email</h3>
-                  <p>{this.props.user.email}</p>
-                  <h3>Password</h3>
-                  <p>*********</p>
+                    <Link to="/editprofile">
+                      <button>Edit Profile</button>
+                    </Link>
+                  </div>
+                )}
 
-                  <h3>1st soul mate</h3>
-                  <p>
-                    {this.props.user.firstName} {this.props.user.lastName}
-                  </p>
-                  <h3>2nd soul mate</h3>
-                  <p>
-                    {this.props.user.partnerFirstName}{" "}
-                    {this.props.user.partnerLastName}
-                  </p>
-
-                  <Link to="/editprofile">
-                    <button>Edit Profile</button>
-                  </Link>
-                </>
-              )}
-
-              {this.props.user.role === "guest" && (
-                <>
-                  <h3>Email</h3>
-                  <p>{this.props.user.email}</p>
-                  <h3>Password</h3>
-                  <p>*********</p>
-                  <h3>Name</h3>
-                  <p>
-                    {this.props.user.firstName} {this.props.user.lastName}
-                  </p>
-                  <h3>Food preference</h3>
-                  <p>{this.props.user.food}</p>
-                  <Link to="/editprofile">
-                    <button>Edit Profile</button>
-                  </Link>
-                </>
-              )}
+                {this.props.user.role === "guest" && (
+                  <div className="profile-container">
+                    <h3>Email</h3>
+                    <p>{this.props.user.email}</p>
+                    <h3>Password</h3>
+                    <p>*********</p>
+                    <h3>Name</h3>
+                    <p>
+                      {this.props.user.firstName} {this.props.user.lastName}
+                    </p>
+                    <h3>Food preference</h3>
+                    <p>{this.props.user.food}</p>
+                    <Link to="/editprofile">
+                      <button>Edit Profile</button>
+                    </Link>
+                  </div>
+                )}
+              
             </div>
           </main>
           <Navbar />
