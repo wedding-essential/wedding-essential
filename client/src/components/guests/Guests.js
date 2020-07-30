@@ -39,10 +39,8 @@ export default class Guests extends Component {
             {this.state.wedding.guests.map((guest) => {
               return (
                 <div>
-                  <h2>{guest.firstName}</h2>
+                  <h2>{guest.firstName} {guest.lastName}</h2>
                   <p>{guest.food}</p>
-                  <button id={guest._id}>Edit</button>
-                  <button id={guest._id}>Delete</button>
                 </div>
               );
             })}
