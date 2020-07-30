@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { lightgrey } from "../../styles/colors";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   position: fixed;
   background-color: white;
   bottom: 0;

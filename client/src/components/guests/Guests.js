@@ -31,10 +31,12 @@ export default class Guests extends Component {
       return (
         <Container>
           <main>
-            <div className="topbar">
-              <h1>Guests</h1>
+            <div className="topbar-wrapper">
+              <div className="topbar">
+                <h1>Guests</h1>
+              </div>
             </div>
-            <div>
+            <div className="content">
               {this.state.wedding.guests.map((guest) => {
                 return (
                   <div key={guest._id}>
