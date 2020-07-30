@@ -36,7 +36,7 @@ export const Container = styled.div`
     .content {
       display: flex;
       flex-flow: column nowrap;
-      margin: 70px 0;
+      margin: 70px 40px;
     }
 
     h1 {
@@ -76,9 +76,20 @@ export const Container = styled.div`
       border: 1px solid ${gold};
       border-radius: 27px;
       padding: 8px 4px;
-      margin: 5px 0 15px 0;
+      margin: 10px auto;
       width: 100px;
       color: white;
+    }
+
+    .popotoEvents {
+      display: flex;
+      flex-flow: column nowrap;
+
+    }
+
+    .popotoButtons {
+      align-self: center;
+      width: 70px;
     }
 
     .form {
@@ -87,14 +98,26 @@ export const Container = styled.div`
     }
 
     input {
-      background-color: ${grey};
+      background-color: white;
       border: 1px solid ${gold};
       border-radius: 3px;
       padding: 10px 5px;
     }
 
+    textarea {
+      background-color: white;
+      border: 1px solid ${gold};
+      border-radius: 3px;
+      padding: 20px 5px;
+    }
+
     label {
       margin-top: 10px;
     }
+
+    .editlink {
+      align-self: center;
+    }
+
   }
 `;

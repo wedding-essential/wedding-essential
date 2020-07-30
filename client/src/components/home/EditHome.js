@@ -208,10 +208,10 @@ export default class EditHome extends Component {
             {this.state.events
               ? this.state.events.map((event) => {
                   return (
-                    <div key={event._id}>
+                    <div className="popotoEvents" key={event._id}>
                       <h3>{event.name}</h3>
-                      <button id={event._id} onClick={this.deleteEvent}>
-                        Delete Event
+                      <button className="popotoButtons" id={event._id} onClick={this.deleteEvent}>
+                        Delete
                       </button>
                     </div>
                   );
