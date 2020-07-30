@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import AddPicture from "../AddPicture";
 import axios from "axios";
+import { Container } from "./styles";
+import Navbar from "../navbar/Navbar";
 
 export default class Gallery extends Component {
   state = {
@@ -17,7 +19,6 @@ export default class Gallery extends Component {
     axios
       .get(`/api/wedding/${weddingId}`)
       .then((response) => {
-        console.log(response.data);
         const { gallery } = response.data;
         this.setState({
           wedding: response.data,
@@ -28,7 +29,6 @@ export default class Gallery extends Component {
   };
 
   setGallery = (newGallery) => {
-    console.log(newGallery);
     this.setState({
       gallery: newGallery,
     });
@@ -38,11 +38,10 @@ export default class Gallery extends Component {
     axios
       .delete(`/api/picture/${pictID}/delete`)
       .then((response) => {
-        console.log(response.data);
+
         this.setState({
           gallery: response.data,
         });
-        console.log(response);
       })
       .catch((err) => {
         console.log(err);
@@ -51,6 +50,7 @@ export default class Gallery extends Component {
 
   render() {
     return (
+
       <>
         {this.state.gallery.map((photo) => {
           console.log(photo);
@@ -69,6 +69,7 @@ export default class Gallery extends Component {
         })}
 
         {this.props.user.role === "couple" ? (
+
           <div>
             <AddPicture
               user={this.props.user}
@@ -76,8 +77,10 @@ export default class Gallery extends Component {
               setGallery={this.setGallery}
             />
           </div>
+
         ) : null}
       </>
+
     );
   }
 }
