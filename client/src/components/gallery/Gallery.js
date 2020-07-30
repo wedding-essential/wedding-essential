@@ -38,6 +38,7 @@ export default class Gallery extends Component {
     axios
       .delete(`/api/picture/${pictID}/delete`)
       .then((response) => {
+
         this.setState({
           gallery: response.data,
         });
@@ -49,22 +50,26 @@ export default class Gallery extends Component {
 
   render() {
     return (
-      <Container>
-        <main>
-          <div className="topbar">
-            <h1>Gallery</h1>
-          </div>
-          {this.state.gallery.map((photo) => {
-            return (
-              <>
-                <img src={photo.imageUrl} style={{ width: "200px" }} />
 
+      <>
+        {this.state.gallery.map((photo) => {
+          console.log(photo);
+          return (
+            <>
+              <div>
+                <img src={photo.imageUrl} style={{ width: "200px" }} />
+              </div>
+              {this.props.user.role === "couple" ? (
                 <button onClick={() => this.deletePicture(photo._id)}>
                   Delete
                 </button>
-              </>
-            );
-          })}
+              ) : null}
+            </>
+          );
+        })}
+
+        {this.props.user.role === "couple" ? (
+
           <div>
             <AddPicture
               user={this.props.user}
@@ -72,9 +77,10 @@ export default class Gallery extends Component {
               setGallery={this.setGallery}
             />
           </div>
-        </main>
-        <Navbar />
-      </Container>
+
+        ) : null}
+      </>
+
     );
   }
 }
