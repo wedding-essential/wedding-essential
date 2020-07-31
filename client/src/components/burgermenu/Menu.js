@@ -50,7 +50,7 @@ export default class Menu extends Component {
                 alt={this.props.user.imgName}
               />
               <h2>
-                {this.props.user.firstName} & {this.props.user.partnerFirstName}
+                {this.state.wedding.owner.firstName} & {this.state.wedding.owner.partnerFirstName}
               </h2>
             </div>
             {this.props.user.role === 'couple' ? (
