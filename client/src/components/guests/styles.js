@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { gold } from "../../styles/colors";
+import { gold, lightgrey } from "../../styles/colors";
 
 export const Container = styled.div`
   display: flex;
@@ -35,6 +35,8 @@ export const Container = styled.div`
     }
 
     .content {
+      width: 100%;
+      max-width: 768px;
       margin: 70px 0;
       z-index: -1;
     }
@@ -45,4 +47,24 @@ export const Container = styled.div`
       line-height: 36px;
       color: ${gold};
     }
+
+    h2 {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      color: ${gold};
+      margin: 0 5px;
+    }
+
+    img {
+      margin: 0 5px;
+    }
+    .guestWrapper {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      padding: 12px 0;
+      border-bottom: 2px solid ${lightgrey};
+    }
+  }
 `;
