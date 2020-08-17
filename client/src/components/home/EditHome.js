@@ -82,10 +82,8 @@ export default class EditHome extends Component {
         events: this.state.events,
       })
       .then((response) => {
-        console.log(response.data.events, "Marco is jealous");
         const { name, time, location, description } = response.data.events;
 
-        console.log("handleSubmit response", response.data.events);
         this.setState({
           eventDescription: description,
           eventLocation: location,
@@ -102,7 +100,6 @@ export default class EditHome extends Component {
 
   deleteEvent = (event) => {
     event.preventDefault();
-    console.log(event.target.id);
     let filteredEvents = this.state.events.slice().filter((elem) => {
       if (elem._id == event.target.id) {
         return false;

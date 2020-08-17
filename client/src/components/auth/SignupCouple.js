@@ -22,7 +22,6 @@ export default class SignupCouple extends Component {
   };
 
   handleSubmit = (event) => {
-    console.log('handleSubmit')
     event.preventDefault();
     const { email, password } = this.state;
 
