@@ -66,6 +66,8 @@ export default class SignupGuest extends Component {
             onChange={this.handleChange}
             required
           ></input>
+          {this.state.message && <p>{this.state.message}</p>}
+          
           <div className="buttons">
             <Link to="/">
               <button type='button'>Back</button>
