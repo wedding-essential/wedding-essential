@@ -5,7 +5,6 @@ const { loginCheck } = require("../auth/middlewares");
 const router = express.Router();
 
 router.get("/:id", loginCheck(), (req, res) => {
-  console.log("Hallo?")
   Wedding.findById(req.params.id)
     .populate("owner")
     .populate("guests")
@@ -47,26 +46,26 @@ router.put("/test/:id", async (req, res) => {
       { new: true }
     );
 
-    console.log(wedding);
     res.json(wedding);
   } catch (error) {
     console.log(error);
     res.json(false);
   }
 });
-router.put('/deleteevent', loginCheck(), async (req, res) => {
+router.put("/deleteevent", loginCheck(), async (req, res) => {
   try {
-    console.log("HAPPENING??!!!")
-    const {events} = req.body
-    console.log(req.user.wedding,"WEDDING!!!!!!!!!!!!!!!!!!!!!!!!!!")
-     const eventList = await Wedding.findByIdAndUpdate(req.user.wedding, { events }, { new: true })
-     res.status(200).json(eventList);
+    const { events } = req.body;
+    const eventList = await Wedding.findByIdAndUpdate(
+      req.user.wedding,
+      { events },
+      { new: true }
+    );
+    res.status(200).json(eventList);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-}
-)
+});
 router.put("/:id", loginCheck(), async (req, res) => {
   try {
     const {
@@ -110,7 +109,6 @@ router.put("/:id", loginCheck(), async (req, res) => {
         { new: true }
       );
     }
-    console.log("WEDDIIIIING", wedding);
     res.status(200).json(wedding);
   } catch (err) {
     console.log(err);
@@ -127,7 +125,5 @@ router.delete("/:id", loginCheck(), async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-
 
 module.exports = router;

@@ -43,7 +43,6 @@ router.put("/:id/user", loginCheck(), (req, res) => {
     { new: true }
   )
     .then((user) => {
-      console.log(user);
       res.json(user);
     })
     .catch((err) => res.status(500).json(err));
