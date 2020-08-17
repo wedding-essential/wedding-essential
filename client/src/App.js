@@ -10,9 +10,7 @@ import Login from "./components/auth/Login";
 import Gallery from "./components/gallery/Gallery";
 import Menu from "./components/burgermenu/Menu";
 import Guests from "./components/guests/Guests";
-import Gifts from "./components/gifts/Gifts";
 import Profile from "./components/profile/Profile";
-import Posts from "./components/posts/Posts";
 import EditProfile from "./components/profile/EditProfile";
 import GlobalStyle from "./styles/global";
 
@@ -30,13 +28,14 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Route 
-        exact 
-        path="/" 
-        render={(props) => {
-          if (this.state.user) return <Redirect to="/home" /> ;
-          else return <Landing/>;
-        }} />
+        <Route
+          exact
+          path="/"
+          render={(props) => {
+            if (this.state.user) return <Redirect to="/home" />;
+            else return <Landing />;
+          }}
+        />
         <Route
           exact
           path="/signup/couple"
@@ -94,27 +93,9 @@ export default class App extends Component {
         />
         <Route
           exact
-          path="/posts"
-          render={(props) => {
-            if (this.state.user) return <Posts />;
-            else return <Redirect to="/" />;
-          }}
-        />
-
-        <Route
-          exact
           path="/guests"
           render={(props) => {
             if (this.state.user) return <Guests user={this.state.user} />;
-            else return <Redirect to="/" />;
-          }}
-        />
-
-        <Route
-          exact
-          path="/gifts"
-          render={(props) => {
-            if (this.state.user) return <Gifts />;
             else return <Redirect to="/" />;
           }}
         />
